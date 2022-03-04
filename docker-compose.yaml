@@ -4,7 +4,7 @@ services:
     build: .
     entrypoint: 
       - ./ethereum_exporter
-      - -url=${OBSERVED_BLOCKCHAIN}
+      - -url=${JSON_RPC_BLOCKCHAIN_URL}
     ports: 
     - "9368"
   agent:
@@ -18,7 +18,6 @@ services:
       - -config.expand-env
       - -config.enable-read-api
     environment:
-      PROM_REMOTE_WRITE_URL: https://prometheus-prod-10-prod-us-central-0.grafana.net/api/prom/push
-      PROM_GCOM_USER_ID: 304472
-      PROM_GCOM_API_KEY: eyJrIjoiNTc4NjU1ZWJmMWYwNTI4ZGY3Nzk0MjJmZDc3ZDYwNTUzYzM2MzkyNiIsIm4iOiJBZ2VudC1FdGhFeHBvcnRlciIsImlkIjo1ODg1MDV9
-  
+      PROM_REMOTE_WRITE_URL: ${PROM_REMOTE_WRITE_URL}
+      PROM_GCOM_USER_ID: ${PROM_GCOM_USER_ID}
+      PROM_GCOM_API_KEY: ${PROM_GCOM_API_KEY}
