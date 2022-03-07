@@ -1,8 +1,6 @@
 package collector
 
 import (
-	"math/big"
-
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/common/hexutil"
 	"github.com/ethereum/go-ethereum/rpc"
@@ -33,23 +31,12 @@ func (collector *EthGetBalance) Describe(ch chan<- *prometheus.Desc) {
 }
 
 func (collector *EthGetBalance) Collect(ch chan<- prometheus.Metric) {
-	var result hexutil.Big
+	var result hexutil.Uint64
 	if err := collector.rpc.Call(&result, "eth_getBalance", common.HexToAddress(collector.address), "latest"); err != nil {
 		ch <- prometheus.NewInvalidMetric(collector.desc, err)
 		return
 	}
 
-	i := (*big.Int)(&result)
-	value := toEther(i)
-	valueFloat64, _ := value.Float64()
-	ch <- prometheus.MustNewConstMetric(collector.desc, prometheus.GaugeValue, valueFloat64)
-}
-
-// CONVERTS WEI TO ETH
-func toEther(o *big.Int) *big.Float {
-	// hex -> balanceAsInt (in wei) -> eth
-	result, balanceAsInt := big.NewFloat(0), big.NewFloat(0)
-	balanceAsInt.SetInt(o)
-	result.Mul(big.NewFloat(0.000000000000000001), balanceAsInt)
-	return result
+	i := float64(result)
+	ch <- prometheus.MustNewConstMetric(collector.desc, prometheus.GaugeValue, i)
 }
