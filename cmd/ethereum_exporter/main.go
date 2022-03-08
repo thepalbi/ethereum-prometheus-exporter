@@ -35,11 +35,13 @@ func main() {
 	}
 
 	url := flag.String("url", "http://localhost:8545", "Ethereum JSON-RPC URL")
-	erc20ContractAddresses := flag.String("erc20ContractAddresses", "", "Comma-separated list of hexa ERC-20 contract addresses to listen for events.")
-	startBlockNumber := flag.Uint64("startBlockNumber", 0, "block number from where to start watching events")
 	addr := flag.String("addr", ":9368", "listen address")
-	ver := flag.Bool("v", false, "print version number and exit")
+	startBlockNumber := flag.Uint64("startBlockNumber", 0, "block number from where to start watching events")
+
 	walletAddress := flag.String("address.checkBalance", "", "Wallet address to check balance")
+	erc20ContractAddresses := flag.String("erc20.contracts", "", "Comma-separated list of hexa ERC-20 contract addresses to listen for events.")
+
+	ver := flag.Bool("v", false, "print version number and exit")
 
 	flag.Parse()
 	if len(flag.Args()) > 0 {
@@ -54,6 +56,9 @@ func main() {
 	var erc20Addresses []common.Address
 	stringAddresses := strings.Split(*erc20ContractAddresses, ",")
 	for _, stringAddr := range stringAddresses {
+		if !common.IsHexAddress(stringAddr) {
+			log.Fatalf("%s is not a valid address", stringAddr)
+		}
 		erc20Addresses = append(erc20Addresses, common.HexToAddress(stringAddr))
 	}
 	log.Printf("Detected %d ERC-20 smart contract(s) to monitor\n", len(erc20Addresses))
