@@ -91,15 +91,16 @@ func main() {
 
 	registry := prometheus.NewPedanticRegistry()
 	registry.MustRegister(
-		net.NewNetPeerCount(rpc),
-		eth.NewEthBlockNumber(rpc),
-		eth.NewEthBlockTimestamp(rpc),
-		eth.NewEthGasPrice(rpc),
-		eth.NewEthEarliestBlockTransactions(rpc),
-		eth.NewEthLatestBlockTransactions(rpc),
-		eth.NewEthPendingBlockTransactions(rpc),
-		eth.NewEthHashrate(rpc),
-		eth.NewEthSyncing(rpc),
+		collector.NewNetPeerCount(rpc, cfg.General.EthBlockchainName),
+		collector.NewEthBlockNumber(rpc, cfg.General.EthBlockchainName),
+		collector.NewEthBlockTimestamp(rpc, cfg.General.EthBlockchainName),
+		collector.NewEthGasPrice(rpc, cfg.General.EthBlockchainName),
+		collector.NewEthEarliestBlockTransactions(rpc, cfg.General.EthBlockchainName),
+		collector.NewEthLatestBlockTransactions(rpc, cfg.General.EthBlockchainName),
+		collector.NewEthPendingBlockTransactions(rpc, cfg.General.EthBlockchainName),
+		collector.NewEthHashrate(rpc, cfg.General.EthBlockchainName),
+		collector.NewEthSyncing(rpc, cfg.General.EthBlockchainName),
+		collector.NewParityNetPeers(rpc, cfg.General.EthBlockchainName),
 		coll,
 		collectorGetAddressBalance,
 	)
