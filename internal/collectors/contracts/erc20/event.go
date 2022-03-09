@@ -2,6 +2,7 @@ package erc20
 
 import (
 	"context"
+	"github.com/thepalbi/ethereum-prometheus-exporter/clients/erc20"
 	"log"
 	"sync"
 
@@ -10,7 +11,6 @@ import (
 	"github.com/pkg/errors"
 	"github.com/prometheus/client_golang/prometheus"
 	"github.com/thepalbi/ethereum-prometheus-exporter/internal/config"
-	"github.com/thepalbi/ethereum-prometheus-exporter/token"
 )
 
 type BlockNumberGetter interface {
@@ -31,7 +31,7 @@ type contractInfo struct {
 }
 
 type Event struct {
-	contractClients  map[*contractInfo]*token.TokenFilterer
+	contractClients  map[*contractInfo]*erc20.TokenFilterer
 	desc             *prometheus.Desc
 	collectMutex     sync.Mutex
 	lastQueriedBlock uint64
@@ -39,7 +39,7 @@ type Event struct {
 }
 
 func getContractInfo(contractAddr common.Address, contractClient bind.ContractCaller, name string) (*contractInfo, error) {
-	contractCaller, err := token.NewTokenCaller(contractAddr, contractClient)
+	contractCaller, err := erc20.NewTokenCaller(contractAddr, contractClient)
 	if err != nil {
 		return nil, errors.Wrapf(err, "failed to get contract info for %s", contractAddr.Hex())
 	}
@@ -59,11 +59,11 @@ func getContractInfo(contractAddr common.Address, contractClient bind.ContractCa
 	}, nil
 }
 
-func getContractClients(client ContractClient, contractAddresses []config.ERC20Target) (map[*contractInfo]*token.TokenFilterer, error) {
-	clients := map[*contractInfo]*token.TokenFilterer{}
+func getContractClients(client ContractClient, contractAddresses []config.ERC20Target) (map[*contractInfo]*erc20.TokenFilterer, error) {
+	clients := map[*contractInfo]*erc20.TokenFilterer{}
 	for _, contractAddress := range contractAddresses {
 		address := common.HexToAddress(contractAddress.ContractAddr)
-		filterer, err := token.NewTokenFilterer(address, client)
+		filterer, err := erc20.NewTokenFilterer(address, client)
 		if err != nil {
 			return nil, errors.Wrap(err, "failed to create ERC20 event collector")
 		}

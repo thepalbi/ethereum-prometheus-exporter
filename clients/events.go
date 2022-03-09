@@ -1,4 +1,4 @@
-package token
+package clients
 
 import (
 	"github.com/ethereum/go-ethereum/common"
