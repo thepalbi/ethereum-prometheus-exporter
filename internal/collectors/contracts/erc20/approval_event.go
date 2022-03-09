@@ -14,23 +14,23 @@ import (
 	"github.com/thepalbi/ethereum-prometheus-exporter/token"
 )
 
-type TransferEvent struct {
+type ApprovalEvent struct {
 	*Event
 }
 
-func NewERC20TransferEvent(client ContractClient, contractAddresses []config.ERC20Target, nowBlockNumber uint64, blockchain string) (*TransferEvent, error) {
+func NewERC20ApprovalEvent(client ContractClient, contractAddresses []config.ERC20Target, nowBlockNumber uint64, blockchain string) (*ApprovalEvent, error) {
 	clients, err := getContractClients(client, contractAddresses)
 	if err != nil {
 		return nil, err
 	}
 
-	return &TransferEvent{
+	return &ApprovalEvent{
 		&Event{
 			contractClients: clients,
 			desc: prometheus.NewDesc(
-				"erc20_transfer_event",
-				"ERC20 Transfer events count",
-				[]string{"contract", "symbol", constants.NameLabel},
+				"erc20_approval_event",
+				"ERC20 Approval events count",
+				[]string{"contract", "symbol"},
 				map[string]string{
 					constants.BlockchainNameLabel: blockchain,
 				},
@@ -41,18 +41,18 @@ func NewERC20TransferEvent(client ContractClient, contractAddresses []config.ERC
 	}, nil
 }
 
-func (col *TransferEvent) Describe(ch chan<- *prometheus.Desc) {
+func (col *ApprovalEvent) Describe(ch chan<- *prometheus.Desc) {
 	ch <- col.desc
 }
 
-func (col *TransferEvent) doCollect(ch chan<- prometheus.Metric, currentBlockNumber uint64, info *contractInfo, client *token.TokenFilterer) {
-	it, err := client.FilterTransfer(&bind.FilterOpts{
+func (col *ApprovalEvent) doCollect(ch chan<- prometheus.Metric, currentBlockNumber uint64, info *contractInfo, client *token.TokenFilterer) {
+	it, err := client.FilterApproval(&bind.FilterOpts{
 		Context: context.Background(),
 		Start:   col.lastQueriedBlock,
 		End:     &currentBlockNumber,
 	}, nil, nil)
 	if err != nil {
-		wErr := errors.Wrapf(err, "failed to create transfer iterator for contract=[%s]", info.Address)
+		wErr := errors.Wrapf(err, "failed to create approval iterator for contract=[%s]", info.Address)
 		ch <- prometheus.NewInvalidMetric(col.desc, wErr)
 		return
 	}
@@ -65,10 +65,10 @@ func (col *TransferEvent) doCollect(ch chan<- prometheus.Metric, currentBlockNum
 		eventsLeft := it.Next()
 		if !eventsLeft && it.Error() == nil {
 			// Finished reading events, advance lastQueriedBlock and publish histogram data
-			ch <- prometheus.MustNewConstHistogram(col.desc, count, sum, nil, info.Address, info.Symbol, info.Name)
+			ch <- prometheus.MustNewConstHistogram(col.desc, count, sum, nil, info.Address, info.Symbol)
 			return
 		} else if !eventsLeft {
-			wErr := errors.Wrapf(err, "failed to read transfer event for contract=[%s]", info.Address)
+			wErr := errors.Wrapf(err, "failed to read approval event for contract=[%s]", info.Address)
 			ch <- prometheus.NewInvalidMetric(col.desc, wErr)
 			return
 		}
@@ -78,9 +78,10 @@ func (col *TransferEvent) doCollect(ch chan<- prometheus.Metric, currentBlockNum
 		count += 1
 		sum += value / math.Pow10(int(info.Decimals))
 	}
+
 }
 
-func (col *TransferEvent) Collect(ch chan<- prometheus.Metric) {
+func (col *ApprovalEvent) Collect(ch chan<- prometheus.Metric) {
 	col.collectMutex.Lock()
 	defer col.collectMutex.Unlock()
 
@@ -90,7 +91,6 @@ func (col *TransferEvent) Collect(ch chan<- prometheus.Metric) {
 		ch <- prometheus.NewInvalidMetric(col.desc, wErr)
 		return
 	}
-	// INV: currentBlockNum >= lastQueriedblock
 
 	wg := sync.WaitGroup{}
 	for contrInfo, client := range col.contractClients {

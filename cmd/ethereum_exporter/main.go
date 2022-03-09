@@ -4,7 +4,6 @@ import (
 	"context"
 	"flag"
 	"fmt"
-	"github.com/thepalbi/ethereum-prometheus-exporter/internal/collectors/net"
 	"log"
 	"net/http"
 	"os"
@@ -15,6 +14,7 @@ import (
 	"github.com/prometheus/client_golang/prometheus/promhttp"
 	"github.com/thepalbi/ethereum-prometheus-exporter/internal/collectors/contracts/erc20"
 	"github.com/thepalbi/ethereum-prometheus-exporter/internal/collectors/eth"
+	"github.com/thepalbi/ethereum-prometheus-exporter/internal/collectors/net"
 	"github.com/thepalbi/ethereum-prometheus-exporter/internal/config"
 )
 
@@ -76,9 +76,14 @@ func main() {
 	// ERC-20 Targets
 	log.Printf("Detected %d ERC-20 smart contract(s) to monitor\n", len(cfg.Target.ERC20))
 
-	coll, err := erc20.NewERC20TransferEvent(client, cfg.Target.ERC20, cfg.General.StartBlockNumber, cfg.General.EthBlockchainName)
+	collectorTransferEvents, err := erc20.NewERC20TransferEvent(client, cfg.Target.ERC20, cfg.General.StartBlockNumber, cfg.General.EthBlockchainName)
 	if err != nil {
 		log.Fatalf("failed to create erc20 transfer collector: %v", err)
+	}
+
+	collectorApprovalEvents, err := erc20.NewERC20ApprovalEvent(client, cfg.Target.ERC20, cfg.General.StartBlockNumber, cfg.General.EthBlockchainName)
+	if err != nil {
+		log.Fatalf("failed to create erc20 approval collector: %v", err)
 	}
 
 	// Wallet  Target
@@ -95,8 +100,9 @@ func main() {
 		eth.NewEthPendingBlockTransactions(rpc, cfg.General.EthBlockchainName),
 		eth.NewEthHashrate(rpc, cfg.General.EthBlockchainName),
 		eth.NewEthSyncing(rpc, cfg.General.EthBlockchainName),
-		coll,
+		collectorTransferEvents,
 		collectorGetAddressBalance,
+		collectorApprovalEvents,
 	)
 
 	handler := promhttp.HandlerFor(registry, promhttp.HandlerOpts{
