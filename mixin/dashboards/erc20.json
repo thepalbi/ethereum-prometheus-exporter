@@ -22,7 +22,7 @@
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
   "id": 43,
-  "iteration": 1646770502276,
+  "iteration": 1646843874713,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -115,13 +115,13 @@
             "uid": "${datasource}"
           },
           "exemplar": true,
-          "expr": "sum by (symbol, contract) (\n    rate(erc20_transfer_event_count[$__rate_interval])\n  )",
+          "expr": "sum by (symbol, contract) (\n    rate(erc20_transfer_event_count{instance=~\"$instance\", job=~\"$job\", blockchain=~\"$blockchain\"}[$__rate_interval])\n  )",
           "interval": "",
           "legendFormat": "{{ symbol }}",
           "refId": "A"
         }
       ],
-      "title": "\"Transfer\" transaction rate",
+      "title": "Transfer events transaction rate",
       "type": "timeseries"
     },
     {
@@ -201,7 +201,7 @@
             "uid": "${datasource}"
           },
           "exemplar": true,
-          "expr": "sum by (contract, symbol) (\n    erc20_transfer_event_sum\n  )",
+          "expr": "sum by (contract, symbol) (\n    erc20_transfer_event_sum{instance=~\"$instance\", job=~\"$job\", blockchain=~\"$blockchain\"}\n  )",
           "interval": "",
           "legendFormat": "{{symbol}}",
           "refId": "A"
@@ -275,7 +275,7 @@
             "uid": "${datasource}"
           },
           "exemplar": true,
-          "expr": "eth_block_number{instance=~\"$instance\", job=~\"$job\"}",
+          "expr": "eth_block_number{instance=~\"$instance\", job=~\"$job\", blockchain=~\"$blockchain\"}",
           "interval": "",
           "legendFormat": "",
           "refId": "A"
@@ -338,7 +338,7 @@
             "uid": "${datasource}"
           },
           "exemplar": true,
-          "expr": "eth_gas_price{job=~\"$job\", instance=~\"$instance\"} * 0.00000001",
+          "expr": "eth_gas_price{job=~\"$job\", instance=~\"$instance\", blockchain=~\"$blockchain\"} * 0.00000001",
           "interval": "",
           "legendFormat": "",
           "refId": "A"
@@ -402,7 +402,7 @@
             "uid": "${datasource}"
           },
           "exemplar": true,
-          "expr": "eth_pending_block_transactions{} ",
+          "expr": "eth_pending_block_transactions{instance=~\"$instance\", job=~\"$job\", blockchain=~\"$blockchain\"} ",
           "interval": "",
           "legendFormat": "",
           "refId": "A"
@@ -466,7 +466,7 @@
             "uid": "${datasource}"
           },
           "exemplar": true,
-          "expr": "net_peers{}",
+          "expr": "net_peers{instance=~\"$instance\", job=~\"$job\", blockchain=~\"$blockchain\"}",
           "interval": "",
           "legendFormat": "",
           "refId": "A"
@@ -484,7 +484,7 @@
     "list": [
       {
         "current": {
-          "selected": true,
+          "selected": false,
           "text": "grafanacloud-pablobalbi-prom",
           "value": "grafanacloud-pablobalbi-prom"
         },
@@ -496,29 +496,24 @@
         "name": "datasource",
         "options": [],
         "query": "prometheus",
-        "queryValue": "",
         "refresh": 1,
         "regex": "",
         "skipUrlSync": false,
         "type": "datasource"
       },
       {
-        "allValue": ".+",
         "current": {
-          "selected": true,
-          "text": [
-            "eth-exporter"
-          ],
-          "value": [
-            "eth-exporter"
-          ]
+          "selected": false,
+          "text": "eth-exporter",
+          "value": "eth-exporter"
         },
         "datasource": "$datasource",
         "definition": "label_values(erc20_transfer_event_bucket,  job)",
         "hide": 0,
-        "includeAll": true,
+        "includeAll": false,
         "label": "job",
         "multi": true,
+        "allValue": ".+",
         "name": "job",
         "options": [],
         "query": {
@@ -530,17 +525,72 @@
         "skipUrlSync": false,
         "sort": 1,
         "type": "query"
+      },
+      {
+        "allValue": ".+",
+        "current": {
+          "selected": false,
+          "text": [
+            "All"
+          ],
+          "value": [
+            "$__all"
+          ]
+        },
+        "datasource": "$datasource",
+        "definition": "label_values(erc20_transfer_event_bucket, instance)",
+        "description": "Exporter instance",
+        "hide": 0,
+        "includeAll": true,
+        "label": "instance",
+        "multi": true,
+        "name": "instance",
+        "options": [],
+        "query": {
+          "query": "label_values(erc20_transfer_event_bucket, instance)",
+          "refId": "StandardVariableQuery"
+        },
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "type": "query"
+      },
+      {
+        "current": {
+          "selected": false,
+          "text": "eth-mainnet",
+          "value": "eth-mainnet"
+        },
+        "datasource": "$datasource",
+        "definition": "label_values(erc20_transfer_event_bucket, blockchain)",
+        "description": "Blockchain to read metrics from.",
+        "hide": 0,
+        "includeAll": false,
+        "label": "blockchain",
+        "multi": false,
+        "name": "blockchain",
+        "options": [],
+        "query": {
+          "query": "label_values(erc20_transfer_event_bucket, blockchain)",
+          "refId": "StandardVariableQuery"
+        },
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "type": "query"
       }
     ]
   },
   "time": {
-    "from": "now-30m",
+    "from": "now-5m",
     "to": "now"
   },
   "timepicker": {},
   "timezone": "",
   "title": "ERC-20 Overview",
   "uid": "flNcxpL7k",
-  "version": 15,
+  "version": 16,
   "weekStart": ""
 }
