@@ -75,11 +75,7 @@ func main() {
 	}
 
 	// ERC-20 Targets
-	var addresses []common.Address
-	for _, target := range cfg.Target.ERC20 {
-		addresses = append(addresses, common.HexToAddress(target.ContractAddr))
-	}
-	log.Printf("Detected %d ERC-20 smart contract(s) to monitor\n", len(addresses))
+	log.Printf("Detected %d ERC-20 smart contract(s) to monitor\n", len(cfg.Target.ERC20))
 
 	coll, err := erc20.NewERC20TransferEvent(client, addresses, cfg.General.StartBlockNumber)
 	if err != nil {
