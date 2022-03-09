@@ -2,7 +2,7 @@
 
 This service exports various metrics from Ethereum clients for consumption by [Prometheus](https://prometheus.io). It uses [JSON-RPC](https://github.com/ethereum/wiki/wiki/JSON-RPC) interface to collect the metrics. Any JSON-RPC 2.0 enabled client should be supported.
 
-## Exported Metrics
+## Exported Metricss
 
 | Name                            | Description                                        |
 | ------------------------------- | -------------------------------------------------- |
