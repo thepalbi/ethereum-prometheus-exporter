@@ -41,3 +41,4 @@ $(CONTRACT_CLIENTS_DIR)/%/client.go:
 
 clean-contract-clients:
 	rm -rf build
+	rm -rf $(CONTRACT_CLIENTS)

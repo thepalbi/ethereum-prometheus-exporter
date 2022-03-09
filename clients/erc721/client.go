@@ -28,113 +28,113 @@ var (
 	_ = event.NewSubscription
 )
 
-// TokenMetaData contains all meta data concerning the Token contract.
-var TokenMetaData = &bind.MetaData{
-	ABI: "[{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"owner\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"approved\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"tokenId\",\"type\":\"uint256\"}],\"name\":\"Approval\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"owner\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"operator\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"bool\",\"name\":\"approved\",\"type\":\"bool\"}],\"name\":\"ApprovalForAll\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"from\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"to\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"tokenId\",\"type\":\"uint256\"}],\"name\":\"Transfer\",\"type\":\"event\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"to\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"tokenId\",\"type\":\"uint256\"}],\"name\":\"approve\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"owner\",\"type\":\"address\"}],\"name\":\"balanceOf\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"balance\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"tokenId\",\"type\":\"uint256\"}],\"name\":\"getApproved\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"operator\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"owner\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"operator\",\"type\":\"address\"}],\"name\":\"isApprovedForAll\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"tokenId\",\"type\":\"uint256\"}],\"name\":\"ownerOf\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"owner\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"from\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"to\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"tokenId\",\"type\":\"uint256\"}],\"name\":\"safeTransferFrom\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"from\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"to\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"tokenId\",\"type\":\"uint256\"},{\"internalType\":\"bytes\",\"name\":\"data\",\"type\":\"bytes\"}],\"name\":\"safeTransferFrom\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"operator\",\"type\":\"address\"},{\"internalType\":\"bool\",\"name\":\"_approved\",\"type\":\"bool\"}],\"name\":\"setApprovalForAll\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"from\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"to\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"tokenId\",\"type\":\"uint256\"}],\"name\":\"transferFrom\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}]",
+// Erc721MetaData contains all meta data concerning the Erc721 contract.
+var Erc721MetaData = &bind.MetaData{
+	ABI: "[{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"owner\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"approved\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"tokenId\",\"type\":\"uint256\"}],\"name\":\"Approval\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"owner\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"operator\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"bool\",\"name\":\"approved\",\"type\":\"bool\"}],\"name\":\"ApprovalForAll\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"from\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"to\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"tokenId\",\"type\":\"uint256\"}],\"name\":\"Transfer\",\"type\":\"event\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"to\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"tokenId\",\"type\":\"uint256\"}],\"name\":\"approve\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"owner\",\"type\":\"address\"}],\"name\":\"balanceOf\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"balance\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"tokenId\",\"type\":\"uint256\"}],\"name\":\"getApproved\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"operator\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"owner\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"operator\",\"type\":\"address\"}],\"name\":\"isApprovedForAll\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"name\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"tokenId\",\"type\":\"uint256\"}],\"name\":\"ownerOf\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"owner\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"from\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"to\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"tokenId\",\"type\":\"uint256\"}],\"name\":\"safeTransferFrom\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"from\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"to\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"tokenId\",\"type\":\"uint256\"},{\"internalType\":\"bytes\",\"name\":\"data\",\"type\":\"bytes\"}],\"name\":\"safeTransferFrom\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"operator\",\"type\":\"address\"},{\"internalType\":\"bool\",\"name\":\"_approved\",\"type\":\"bool\"}],\"name\":\"setApprovalForAll\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"symbol\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"from\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"to\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"tokenId\",\"type\":\"uint256\"}],\"name\":\"transferFrom\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}]",
 }
 
-// TokenABI is the input ABI used to generate the binding from.
-// Deprecated: Use TokenMetaData.ABI instead.
-var TokenABI = TokenMetaData.ABI
+// Erc721ABI is the input ABI used to generate the binding from.
+// Deprecated: Use Erc721MetaData.ABI instead.
+var Erc721ABI = Erc721MetaData.ABI
 
-// Token is an auto generated Go binding around an Ethereum contract.
-type Token struct {
-	TokenCaller     // Read-only binding to the contract
-	TokenTransactor // Write-only binding to the contract
-	TokenFilterer   // Log filterer for contract events
+// Erc721 is an auto generated Go binding around an Ethereum contract.
+type Erc721 struct {
+	Erc721Caller     // Read-only binding to the contract
+	Erc721Transactor // Write-only binding to the contract
+	Erc721Filterer   // Log filterer for contract events
 }
 
-// TokenCaller is an auto generated read-only Go binding around an Ethereum contract.
-type TokenCaller struct {
+// Erc721Caller is an auto generated read-only Go binding around an Ethereum contract.
+type Erc721Caller struct {
 	contract *bind.BoundContract // Generic contract wrapper for the low level calls
 }
 
-// TokenTransactor is an auto generated write-only Go binding around an Ethereum contract.
-type TokenTransactor struct {
+// Erc721Transactor is an auto generated write-only Go binding around an Ethereum contract.
+type Erc721Transactor struct {
 	contract *bind.BoundContract // Generic contract wrapper for the low level calls
 }
 
-// TokenFilterer is an auto generated log filtering Go binding around an Ethereum contract events.
-type TokenFilterer struct {
+// Erc721Filterer is an auto generated log filtering Go binding around an Ethereum contract events.
+type Erc721Filterer struct {
 	contract *bind.BoundContract // Generic contract wrapper for the low level calls
 }
 
-// TokenSession is an auto generated Go binding around an Ethereum contract,
+// Erc721Session is an auto generated Go binding around an Ethereum contract,
 // with pre-set call and transact options.
-type TokenSession struct {
-	Contract     *Token            // Generic contract binding to set the session for
+type Erc721Session struct {
+	Contract     *Erc721           // Generic contract binding to set the session for
 	CallOpts     bind.CallOpts     // Call options to use throughout this session
 	TransactOpts bind.TransactOpts // Transaction auth options to use throughout this session
 }
 
-// TokenCallerSession is an auto generated read-only Go binding around an Ethereum contract,
+// Erc721CallerSession is an auto generated read-only Go binding around an Ethereum contract,
 // with pre-set call options.
-type TokenCallerSession struct {
-	Contract *TokenCaller  // Generic contract caller binding to set the session for
+type Erc721CallerSession struct {
+	Contract *Erc721Caller // Generic contract caller binding to set the session for
 	CallOpts bind.CallOpts // Call options to use throughout this session
 }
 
-// TokenTransactorSession is an auto generated write-only Go binding around an Ethereum contract,
+// Erc721TransactorSession is an auto generated write-only Go binding around an Ethereum contract,
 // with pre-set transact options.
-type TokenTransactorSession struct {
-	Contract     *TokenTransactor  // Generic contract transactor binding to set the session for
+type Erc721TransactorSession struct {
+	Contract     *Erc721Transactor // Generic contract transactor binding to set the session for
 	TransactOpts bind.TransactOpts // Transaction auth options to use throughout this session
 }
 
-// TokenRaw is an auto generated low-level Go binding around an Ethereum contract.
-type TokenRaw struct {
-	Contract *Token // Generic contract binding to access the raw methods on
+// Erc721Raw is an auto generated low-level Go binding around an Ethereum contract.
+type Erc721Raw struct {
+	Contract *Erc721 // Generic contract binding to access the raw methods on
 }
 
-// TokenCallerRaw is an auto generated low-level read-only Go binding around an Ethereum contract.
-type TokenCallerRaw struct {
-	Contract *TokenCaller // Generic read-only contract binding to access the raw methods on
+// Erc721CallerRaw is an auto generated low-level read-only Go binding around an Ethereum contract.
+type Erc721CallerRaw struct {
+	Contract *Erc721Caller // Generic read-only contract binding to access the raw methods on
 }
 
-// TokenTransactorRaw is an auto generated low-level write-only Go binding around an Ethereum contract.
-type TokenTransactorRaw struct {
-	Contract *TokenTransactor // Generic write-only contract binding to access the raw methods on
+// Erc721TransactorRaw is an auto generated low-level write-only Go binding around an Ethereum contract.
+type Erc721TransactorRaw struct {
+	Contract *Erc721Transactor // Generic write-only contract binding to access the raw methods on
 }
 
-// NewToken creates a new instance of Token, bound to a specific deployed contract.
-func NewToken(address common.Address, backend bind.ContractBackend) (*Token, error) {
-	contract, err := bindToken(address, backend, backend, backend)
+// NewErc721 creates a new instance of Erc721, bound to a specific deployed contract.
+func NewErc721(address common.Address, backend bind.ContractBackend) (*Erc721, error) {
+	contract, err := bindErc721(address, backend, backend, backend)
 	if err != nil {
 		return nil, err
 	}
-	return &Token{TokenCaller: TokenCaller{contract: contract}, TokenTransactor: TokenTransactor{contract: contract}, TokenFilterer: TokenFilterer{contract: contract}}, nil
+	return &Erc721{Erc721Caller: Erc721Caller{contract: contract}, Erc721Transactor: Erc721Transactor{contract: contract}, Erc721Filterer: Erc721Filterer{contract: contract}}, nil
 }
 
-// NewTokenCaller creates a new read-only instance of Token, bound to a specific deployed contract.
-func NewTokenCaller(address common.Address, caller bind.ContractCaller) (*TokenCaller, error) {
-	contract, err := bindToken(address, caller, nil, nil)
+// NewErc721Caller creates a new read-only instance of Erc721, bound to a specific deployed contract.
+func NewErc721Caller(address common.Address, caller bind.ContractCaller) (*Erc721Caller, error) {
+	contract, err := bindErc721(address, caller, nil, nil)
 	if err != nil {
 		return nil, err
 	}
-	return &TokenCaller{contract: contract}, nil
+	return &Erc721Caller{contract: contract}, nil
 }
 
-// NewTokenTransactor creates a new write-only instance of Token, bound to a specific deployed contract.
-func NewTokenTransactor(address common.Address, transactor bind.ContractTransactor) (*TokenTransactor, error) {
-	contract, err := bindToken(address, nil, transactor, nil)
+// NewErc721Transactor creates a new write-only instance of Erc721, bound to a specific deployed contract.
+func NewErc721Transactor(address common.Address, transactor bind.ContractTransactor) (*Erc721Transactor, error) {
+	contract, err := bindErc721(address, nil, transactor, nil)
 	if err != nil {
 		return nil, err
 	}
-	return &TokenTransactor{contract: contract}, nil
+	return &Erc721Transactor{contract: contract}, nil
 }
 
-// NewTokenFilterer creates a new log filterer instance of Token, bound to a specific deployed contract.
-func NewTokenFilterer(address common.Address, filterer bind.ContractFilterer) (*TokenFilterer, error) {
-	contract, err := bindToken(address, nil, nil, filterer)
+// NewErc721Filterer creates a new log filterer instance of Erc721, bound to a specific deployed contract.
+func NewErc721Filterer(address common.Address, filterer bind.ContractFilterer) (*Erc721Filterer, error) {
+	contract, err := bindErc721(address, nil, nil, filterer)
 	if err != nil {
 		return nil, err
 	}
-	return &TokenFilterer{contract: contract}, nil
+	return &Erc721Filterer{contract: contract}, nil
 }
 
-// bindToken binds a generic wrapper to an already deployed contract.
-func bindToken(address common.Address, caller bind.ContractCaller, transactor bind.ContractTransactor, filterer bind.ContractFilterer) (*bind.BoundContract, error) {
-	parsed, err := abi.JSON(strings.NewReader(TokenABI))
+// bindErc721 binds a generic wrapper to an already deployed contract.
+func bindErc721(address common.Address, caller bind.ContractCaller, transactor bind.ContractTransactor, filterer bind.ContractFilterer) (*bind.BoundContract, error) {
+	parsed, err := abi.JSON(strings.NewReader(Erc721ABI))
 	if err != nil {
 		return nil, err
 	}
@@ -145,46 +145,46 @@ func bindToken(address common.Address, caller bind.ContractCaller, transactor bi
 // sets the output to result. The result type might be a single field for simple
 // returns, a slice of interfaces for anonymous returns and a struct for named
 // returns.
-func (_Token *TokenRaw) Call(opts *bind.CallOpts, result *[]interface{}, method string, params ...interface{}) error {
-	return _Token.Contract.TokenCaller.contract.Call(opts, result, method, params...)
+func (_Erc721 *Erc721Raw) Call(opts *bind.CallOpts, result *[]interface{}, method string, params ...interface{}) error {
+	return _Erc721.Contract.Erc721Caller.contract.Call(opts, result, method, params...)
 }
 
 // Transfer initiates a plain transaction to move funds to the contract, calling
 // its default method if one is available.
-func (_Token *TokenRaw) Transfer(opts *bind.TransactOpts) (*types.Transaction, error) {
-	return _Token.Contract.TokenTransactor.contract.Transfer(opts)
+func (_Erc721 *Erc721Raw) Transfer(opts *bind.TransactOpts) (*types.Transaction, error) {
+	return _Erc721.Contract.Erc721Transactor.contract.Transfer(opts)
 }
 
 // Transact invokes the (paid) contract method with params as input values.
-func (_Token *TokenRaw) Transact(opts *bind.TransactOpts, method string, params ...interface{}) (*types.Transaction, error) {
-	return _Token.Contract.TokenTransactor.contract.Transact(opts, method, params...)
+func (_Erc721 *Erc721Raw) Transact(opts *bind.TransactOpts, method string, params ...interface{}) (*types.Transaction, error) {
+	return _Erc721.Contract.Erc721Transactor.contract.Transact(opts, method, params...)
 }
 
 // Call invokes the (constant) contract method with params as input values and
 // sets the output to result. The result type might be a single field for simple
 // returns, a slice of interfaces for anonymous returns and a struct for named
 // returns.
-func (_Token *TokenCallerRaw) Call(opts *bind.CallOpts, result *[]interface{}, method string, params ...interface{}) error {
-	return _Token.Contract.contract.Call(opts, result, method, params...)
+func (_Erc721 *Erc721CallerRaw) Call(opts *bind.CallOpts, result *[]interface{}, method string, params ...interface{}) error {
+	return _Erc721.Contract.contract.Call(opts, result, method, params...)
 }
 
 // Transfer initiates a plain transaction to move funds to the contract, calling
 // its default method if one is available.
-func (_Token *TokenTransactorRaw) Transfer(opts *bind.TransactOpts) (*types.Transaction, error) {
-	return _Token.Contract.contract.Transfer(opts)
+func (_Erc721 *Erc721TransactorRaw) Transfer(opts *bind.TransactOpts) (*types.Transaction, error) {
+	return _Erc721.Contract.contract.Transfer(opts)
 }
 
 // Transact invokes the (paid) contract method with params as input values.
-func (_Token *TokenTransactorRaw) Transact(opts *bind.TransactOpts, method string, params ...interface{}) (*types.Transaction, error) {
-	return _Token.Contract.contract.Transact(opts, method, params...)
+func (_Erc721 *Erc721TransactorRaw) Transact(opts *bind.TransactOpts, method string, params ...interface{}) (*types.Transaction, error) {
+	return _Erc721.Contract.contract.Transact(opts, method, params...)
 }
 
 // BalanceOf is a free data retrieval call binding the contract method 0x70a08231.
 //
 // Solidity: function balanceOf(address owner) view returns(uint256 balance)
-func (_Token *TokenCaller) BalanceOf(opts *bind.CallOpts, owner common.Address) (*big.Int, error) {
+func (_Erc721 *Erc721Caller) BalanceOf(opts *bind.CallOpts, owner common.Address) (*big.Int, error) {
 	var out []interface{}
-	err := _Token.contract.Call(opts, &out, "balanceOf", owner)
+	err := _Erc721.contract.Call(opts, &out, "balanceOf", owner)
 
 	if err != nil {
 		return *new(*big.Int), err
@@ -199,23 +199,23 @@ func (_Token *TokenCaller) BalanceOf(opts *bind.CallOpts, owner common.Address) 
 // BalanceOf is a free data retrieval call binding the contract method 0x70a08231.
 //
 // Solidity: function balanceOf(address owner) view returns(uint256 balance)
-func (_Token *TokenSession) BalanceOf(owner common.Address) (*big.Int, error) {
-	return _Token.Contract.BalanceOf(&_Token.CallOpts, owner)
+func (_Erc721 *Erc721Session) BalanceOf(owner common.Address) (*big.Int, error) {
+	return _Erc721.Contract.BalanceOf(&_Erc721.CallOpts, owner)
 }
 
 // BalanceOf is a free data retrieval call binding the contract method 0x70a08231.
 //
 // Solidity: function balanceOf(address owner) view returns(uint256 balance)
-func (_Token *TokenCallerSession) BalanceOf(owner common.Address) (*big.Int, error) {
-	return _Token.Contract.BalanceOf(&_Token.CallOpts, owner)
+func (_Erc721 *Erc721CallerSession) BalanceOf(owner common.Address) (*big.Int, error) {
+	return _Erc721.Contract.BalanceOf(&_Erc721.CallOpts, owner)
 }
 
 // GetApproved is a free data retrieval call binding the contract method 0x081812fc.
 //
 // Solidity: function getApproved(uint256 tokenId) view returns(address operator)
-func (_Token *TokenCaller) GetApproved(opts *bind.CallOpts, tokenId *big.Int) (common.Address, error) {
+func (_Erc721 *Erc721Caller) GetApproved(opts *bind.CallOpts, tokenId *big.Int) (common.Address, error) {
 	var out []interface{}
-	err := _Token.contract.Call(opts, &out, "getApproved", tokenId)
+	err := _Erc721.contract.Call(opts, &out, "getApproved", tokenId)
 
 	if err != nil {
 		return *new(common.Address), err
@@ -230,23 +230,23 @@ func (_Token *TokenCaller) GetApproved(opts *bind.CallOpts, tokenId *big.Int) (c
 // GetApproved is a free data retrieval call binding the contract method 0x081812fc.
 //
 // Solidity: function getApproved(uint256 tokenId) view returns(address operator)
-func (_Token *TokenSession) GetApproved(tokenId *big.Int) (common.Address, error) {
-	return _Token.Contract.GetApproved(&_Token.CallOpts, tokenId)
+func (_Erc721 *Erc721Session) GetApproved(tokenId *big.Int) (common.Address, error) {
+	return _Erc721.Contract.GetApproved(&_Erc721.CallOpts, tokenId)
 }
 
 // GetApproved is a free data retrieval call binding the contract method 0x081812fc.
 //
 // Solidity: function getApproved(uint256 tokenId) view returns(address operator)
-func (_Token *TokenCallerSession) GetApproved(tokenId *big.Int) (common.Address, error) {
-	return _Token.Contract.GetApproved(&_Token.CallOpts, tokenId)
+func (_Erc721 *Erc721CallerSession) GetApproved(tokenId *big.Int) (common.Address, error) {
+	return _Erc721.Contract.GetApproved(&_Erc721.CallOpts, tokenId)
 }
 
 // IsApprovedForAll is a free data retrieval call binding the contract method 0xe985e9c5.
 //
 // Solidity: function isApprovedForAll(address owner, address operator) view returns(bool)
-func (_Token *TokenCaller) IsApprovedForAll(opts *bind.CallOpts, owner common.Address, operator common.Address) (bool, error) {
+func (_Erc721 *Erc721Caller) IsApprovedForAll(opts *bind.CallOpts, owner common.Address, operator common.Address) (bool, error) {
 	var out []interface{}
-	err := _Token.contract.Call(opts, &out, "isApprovedForAll", owner, operator)
+	err := _Erc721.contract.Call(opts, &out, "isApprovedForAll", owner, operator)
 
 	if err != nil {
 		return *new(bool), err
@@ -261,23 +261,54 @@ func (_Token *TokenCaller) IsApprovedForAll(opts *bind.CallOpts, owner common.Ad
 // IsApprovedForAll is a free data retrieval call binding the contract method 0xe985e9c5.
 //
 // Solidity: function isApprovedForAll(address owner, address operator) view returns(bool)
-func (_Token *TokenSession) IsApprovedForAll(owner common.Address, operator common.Address) (bool, error) {
-	return _Token.Contract.IsApprovedForAll(&_Token.CallOpts, owner, operator)
+func (_Erc721 *Erc721Session) IsApprovedForAll(owner common.Address, operator common.Address) (bool, error) {
+	return _Erc721.Contract.IsApprovedForAll(&_Erc721.CallOpts, owner, operator)
 }
 
 // IsApprovedForAll is a free data retrieval call binding the contract method 0xe985e9c5.
 //
 // Solidity: function isApprovedForAll(address owner, address operator) view returns(bool)
-func (_Token *TokenCallerSession) IsApprovedForAll(owner common.Address, operator common.Address) (bool, error) {
-	return _Token.Contract.IsApprovedForAll(&_Token.CallOpts, owner, operator)
+func (_Erc721 *Erc721CallerSession) IsApprovedForAll(owner common.Address, operator common.Address) (bool, error) {
+	return _Erc721.Contract.IsApprovedForAll(&_Erc721.CallOpts, owner, operator)
+}
+
+// Name is a free data retrieval call binding the contract method 0x06fdde03.
+//
+// Solidity: function name() view returns(string)
+func (_Erc721 *Erc721Caller) Name(opts *bind.CallOpts) (string, error) {
+	var out []interface{}
+	err := _Erc721.contract.Call(opts, &out, "name")
+
+	if err != nil {
+		return *new(string), err
+	}
+
+	out0 := *abi.ConvertType(out[0], new(string)).(*string)
+
+	return out0, err
+
+}
+
+// Name is a free data retrieval call binding the contract method 0x06fdde03.
+//
+// Solidity: function name() view returns(string)
+func (_Erc721 *Erc721Session) Name() (string, error) {
+	return _Erc721.Contract.Name(&_Erc721.CallOpts)
+}
+
+// Name is a free data retrieval call binding the contract method 0x06fdde03.
+//
+// Solidity: function name() view returns(string)
+func (_Erc721 *Erc721CallerSession) Name() (string, error) {
+	return _Erc721.Contract.Name(&_Erc721.CallOpts)
 }
 
 // OwnerOf is a free data retrieval call binding the contract method 0x6352211e.
 //
 // Solidity: function ownerOf(uint256 tokenId) view returns(address owner)
-func (_Token *TokenCaller) OwnerOf(opts *bind.CallOpts, tokenId *big.Int) (common.Address, error) {
+func (_Erc721 *Erc721Caller) OwnerOf(opts *bind.CallOpts, tokenId *big.Int) (common.Address, error) {
 	var out []interface{}
-	err := _Token.contract.Call(opts, &out, "ownerOf", tokenId)
+	err := _Erc721.contract.Call(opts, &out, "ownerOf", tokenId)
 
 	if err != nil {
 		return *new(common.Address), err
@@ -292,125 +323,156 @@ func (_Token *TokenCaller) OwnerOf(opts *bind.CallOpts, tokenId *big.Int) (commo
 // OwnerOf is a free data retrieval call binding the contract method 0x6352211e.
 //
 // Solidity: function ownerOf(uint256 tokenId) view returns(address owner)
-func (_Token *TokenSession) OwnerOf(tokenId *big.Int) (common.Address, error) {
-	return _Token.Contract.OwnerOf(&_Token.CallOpts, tokenId)
+func (_Erc721 *Erc721Session) OwnerOf(tokenId *big.Int) (common.Address, error) {
+	return _Erc721.Contract.OwnerOf(&_Erc721.CallOpts, tokenId)
 }
 
 // OwnerOf is a free data retrieval call binding the contract method 0x6352211e.
 //
 // Solidity: function ownerOf(uint256 tokenId) view returns(address owner)
-func (_Token *TokenCallerSession) OwnerOf(tokenId *big.Int) (common.Address, error) {
-	return _Token.Contract.OwnerOf(&_Token.CallOpts, tokenId)
+func (_Erc721 *Erc721CallerSession) OwnerOf(tokenId *big.Int) (common.Address, error) {
+	return _Erc721.Contract.OwnerOf(&_Erc721.CallOpts, tokenId)
+}
+
+// Symbol is a free data retrieval call binding the contract method 0x95d89b41.
+//
+// Solidity: function symbol() view returns(string)
+func (_Erc721 *Erc721Caller) Symbol(opts *bind.CallOpts) (string, error) {
+	var out []interface{}
+	err := _Erc721.contract.Call(opts, &out, "symbol")
+
+	if err != nil {
+		return *new(string), err
+	}
+
+	out0 := *abi.ConvertType(out[0], new(string)).(*string)
+
+	return out0, err
+
+}
+
+// Symbol is a free data retrieval call binding the contract method 0x95d89b41.
+//
+// Solidity: function symbol() view returns(string)
+func (_Erc721 *Erc721Session) Symbol() (string, error) {
+	return _Erc721.Contract.Symbol(&_Erc721.CallOpts)
+}
+
+// Symbol is a free data retrieval call binding the contract method 0x95d89b41.
+//
+// Solidity: function symbol() view returns(string)
+func (_Erc721 *Erc721CallerSession) Symbol() (string, error) {
+	return _Erc721.Contract.Symbol(&_Erc721.CallOpts)
 }
 
 // Approve is a paid mutator transaction binding the contract method 0x095ea7b3.
 //
 // Solidity: function approve(address to, uint256 tokenId) returns()
-func (_Token *TokenTransactor) Approve(opts *bind.TransactOpts, to common.Address, tokenId *big.Int) (*types.Transaction, error) {
-	return _Token.contract.Transact(opts, "approve", to, tokenId)
+func (_Erc721 *Erc721Transactor) Approve(opts *bind.TransactOpts, to common.Address, tokenId *big.Int) (*types.Transaction, error) {
+	return _Erc721.contract.Transact(opts, "approve", to, tokenId)
 }
 
 // Approve is a paid mutator transaction binding the contract method 0x095ea7b3.
 //
 // Solidity: function approve(address to, uint256 tokenId) returns()
-func (_Token *TokenSession) Approve(to common.Address, tokenId *big.Int) (*types.Transaction, error) {
-	return _Token.Contract.Approve(&_Token.TransactOpts, to, tokenId)
+func (_Erc721 *Erc721Session) Approve(to common.Address, tokenId *big.Int) (*types.Transaction, error) {
+	return _Erc721.Contract.Approve(&_Erc721.TransactOpts, to, tokenId)
 }
 
 // Approve is a paid mutator transaction binding the contract method 0x095ea7b3.
 //
 // Solidity: function approve(address to, uint256 tokenId) returns()
-func (_Token *TokenTransactorSession) Approve(to common.Address, tokenId *big.Int) (*types.Transaction, error) {
-	return _Token.Contract.Approve(&_Token.TransactOpts, to, tokenId)
+func (_Erc721 *Erc721TransactorSession) Approve(to common.Address, tokenId *big.Int) (*types.Transaction, error) {
+	return _Erc721.Contract.Approve(&_Erc721.TransactOpts, to, tokenId)
 }
 
 // SafeTransferFrom is a paid mutator transaction binding the contract method 0x42842e0e.
 //
 // Solidity: function safeTransferFrom(address from, address to, uint256 tokenId) returns()
-func (_Token *TokenTransactor) SafeTransferFrom(opts *bind.TransactOpts, from common.Address, to common.Address, tokenId *big.Int) (*types.Transaction, error) {
-	return _Token.contract.Transact(opts, "safeTransferFrom", from, to, tokenId)
+func (_Erc721 *Erc721Transactor) SafeTransferFrom(opts *bind.TransactOpts, from common.Address, to common.Address, tokenId *big.Int) (*types.Transaction, error) {
+	return _Erc721.contract.Transact(opts, "safeTransferFrom", from, to, tokenId)
 }
 
 // SafeTransferFrom is a paid mutator transaction binding the contract method 0x42842e0e.
 //
 // Solidity: function safeTransferFrom(address from, address to, uint256 tokenId) returns()
-func (_Token *TokenSession) SafeTransferFrom(from common.Address, to common.Address, tokenId *big.Int) (*types.Transaction, error) {
-	return _Token.Contract.SafeTransferFrom(&_Token.TransactOpts, from, to, tokenId)
+func (_Erc721 *Erc721Session) SafeTransferFrom(from common.Address, to common.Address, tokenId *big.Int) (*types.Transaction, error) {
+	return _Erc721.Contract.SafeTransferFrom(&_Erc721.TransactOpts, from, to, tokenId)
 }
 
 // SafeTransferFrom is a paid mutator transaction binding the contract method 0x42842e0e.
 //
 // Solidity: function safeTransferFrom(address from, address to, uint256 tokenId) returns()
-func (_Token *TokenTransactorSession) SafeTransferFrom(from common.Address, to common.Address, tokenId *big.Int) (*types.Transaction, error) {
-	return _Token.Contract.SafeTransferFrom(&_Token.TransactOpts, from, to, tokenId)
+func (_Erc721 *Erc721TransactorSession) SafeTransferFrom(from common.Address, to common.Address, tokenId *big.Int) (*types.Transaction, error) {
+	return _Erc721.Contract.SafeTransferFrom(&_Erc721.TransactOpts, from, to, tokenId)
 }
 
 // SafeTransferFrom0 is a paid mutator transaction binding the contract method 0xb88d4fde.
 //
 // Solidity: function safeTransferFrom(address from, address to, uint256 tokenId, bytes data) returns()
-func (_Token *TokenTransactor) SafeTransferFrom0(opts *bind.TransactOpts, from common.Address, to common.Address, tokenId *big.Int, data []byte) (*types.Transaction, error) {
-	return _Token.contract.Transact(opts, "safeTransferFrom0", from, to, tokenId, data)
+func (_Erc721 *Erc721Transactor) SafeTransferFrom0(opts *bind.TransactOpts, from common.Address, to common.Address, tokenId *big.Int, data []byte) (*types.Transaction, error) {
+	return _Erc721.contract.Transact(opts, "safeTransferFrom0", from, to, tokenId, data)
 }
 
 // SafeTransferFrom0 is a paid mutator transaction binding the contract method 0xb88d4fde.
 //
 // Solidity: function safeTransferFrom(address from, address to, uint256 tokenId, bytes data) returns()
-func (_Token *TokenSession) SafeTransferFrom0(from common.Address, to common.Address, tokenId *big.Int, data []byte) (*types.Transaction, error) {
-	return _Token.Contract.SafeTransferFrom0(&_Token.TransactOpts, from, to, tokenId, data)
+func (_Erc721 *Erc721Session) SafeTransferFrom0(from common.Address, to common.Address, tokenId *big.Int, data []byte) (*types.Transaction, error) {
+	return _Erc721.Contract.SafeTransferFrom0(&_Erc721.TransactOpts, from, to, tokenId, data)
 }
 
 // SafeTransferFrom0 is a paid mutator transaction binding the contract method 0xb88d4fde.
 //
 // Solidity: function safeTransferFrom(address from, address to, uint256 tokenId, bytes data) returns()
-func (_Token *TokenTransactorSession) SafeTransferFrom0(from common.Address, to common.Address, tokenId *big.Int, data []byte) (*types.Transaction, error) {
-	return _Token.Contract.SafeTransferFrom0(&_Token.TransactOpts, from, to, tokenId, data)
+func (_Erc721 *Erc721TransactorSession) SafeTransferFrom0(from common.Address, to common.Address, tokenId *big.Int, data []byte) (*types.Transaction, error) {
+	return _Erc721.Contract.SafeTransferFrom0(&_Erc721.TransactOpts, from, to, tokenId, data)
 }
 
 // SetApprovalForAll is a paid mutator transaction binding the contract method 0xa22cb465.
 //
 // Solidity: function setApprovalForAll(address operator, bool _approved) returns()
-func (_Token *TokenTransactor) SetApprovalForAll(opts *bind.TransactOpts, operator common.Address, _approved bool) (*types.Transaction, error) {
-	return _Token.contract.Transact(opts, "setApprovalForAll", operator, _approved)
+func (_Erc721 *Erc721Transactor) SetApprovalForAll(opts *bind.TransactOpts, operator common.Address, _approved bool) (*types.Transaction, error) {
+	return _Erc721.contract.Transact(opts, "setApprovalForAll", operator, _approved)
 }
 
 // SetApprovalForAll is a paid mutator transaction binding the contract method 0xa22cb465.
 //
 // Solidity: function setApprovalForAll(address operator, bool _approved) returns()
-func (_Token *TokenSession) SetApprovalForAll(operator common.Address, _approved bool) (*types.Transaction, error) {
-	return _Token.Contract.SetApprovalForAll(&_Token.TransactOpts, operator, _approved)
+func (_Erc721 *Erc721Session) SetApprovalForAll(operator common.Address, _approved bool) (*types.Transaction, error) {
+	return _Erc721.Contract.SetApprovalForAll(&_Erc721.TransactOpts, operator, _approved)
 }
 
 // SetApprovalForAll is a paid mutator transaction binding the contract method 0xa22cb465.
 //
 // Solidity: function setApprovalForAll(address operator, bool _approved) returns()
-func (_Token *TokenTransactorSession) SetApprovalForAll(operator common.Address, _approved bool) (*types.Transaction, error) {
-	return _Token.Contract.SetApprovalForAll(&_Token.TransactOpts, operator, _approved)
+func (_Erc721 *Erc721TransactorSession) SetApprovalForAll(operator common.Address, _approved bool) (*types.Transaction, error) {
+	return _Erc721.Contract.SetApprovalForAll(&_Erc721.TransactOpts, operator, _approved)
 }
 
 // TransferFrom is a paid mutator transaction binding the contract method 0x23b872dd.
 //
 // Solidity: function transferFrom(address from, address to, uint256 tokenId) returns()
-func (_Token *TokenTransactor) TransferFrom(opts *bind.TransactOpts, from common.Address, to common.Address, tokenId *big.Int) (*types.Transaction, error) {
-	return _Token.contract.Transact(opts, "transferFrom", from, to, tokenId)
+func (_Erc721 *Erc721Transactor) TransferFrom(opts *bind.TransactOpts, from common.Address, to common.Address, tokenId *big.Int) (*types.Transaction, error) {
+	return _Erc721.contract.Transact(opts, "transferFrom", from, to, tokenId)
 }
 
 // TransferFrom is a paid mutator transaction binding the contract method 0x23b872dd.
 //
 // Solidity: function transferFrom(address from, address to, uint256 tokenId) returns()
-func (_Token *TokenSession) TransferFrom(from common.Address, to common.Address, tokenId *big.Int) (*types.Transaction, error) {
-	return _Token.Contract.TransferFrom(&_Token.TransactOpts, from, to, tokenId)
+func (_Erc721 *Erc721Session) TransferFrom(from common.Address, to common.Address, tokenId *big.Int) (*types.Transaction, error) {
+	return _Erc721.Contract.TransferFrom(&_Erc721.TransactOpts, from, to, tokenId)
 }
 
 // TransferFrom is a paid mutator transaction binding the contract method 0x23b872dd.
 //
 // Solidity: function transferFrom(address from, address to, uint256 tokenId) returns()
-func (_Token *TokenTransactorSession) TransferFrom(from common.Address, to common.Address, tokenId *big.Int) (*types.Transaction, error) {
-	return _Token.Contract.TransferFrom(&_Token.TransactOpts, from, to, tokenId)
+func (_Erc721 *Erc721TransactorSession) TransferFrom(from common.Address, to common.Address, tokenId *big.Int) (*types.Transaction, error) {
+	return _Erc721.Contract.TransferFrom(&_Erc721.TransactOpts, from, to, tokenId)
 }
 
-// TokenApprovalIterator is returned from FilterApproval and is used to iterate over the raw logs and unpacked data for Approval events raised by the Token contract.
-type TokenApprovalIterator struct {
-	Event *TokenApproval // Event containing the contract specifics and raw log
+// Erc721ApprovalIterator is returned from FilterApproval and is used to iterate over the raw logs and unpacked data for Approval events raised by the Erc721 contract.
+type Erc721ApprovalIterator struct {
+	Event *Erc721Approval // Event containing the contract specifics and raw log
 
 	contract *bind.BoundContract // Generic contract to use for unpacking event data
 	event    string              // Event name to use for unpacking event data
@@ -424,7 +486,7 @@ type TokenApprovalIterator struct {
 // Next advances the iterator to the subsequent event, returning whether there
 // are any more events found. In case of a retrieval or parsing error, false is
 // returned and Error() can be queried for the exact failure.
-func (it *TokenApprovalIterator) Next() bool {
+func (it *Erc721ApprovalIterator) Next() bool {
 	// If the iterator failed, stop iterating
 	if it.fail != nil {
 		return false
@@ -433,7 +495,7 @@ func (it *TokenApprovalIterator) Next() bool {
 	if it.done {
 		select {
 		case log := <-it.logs:
-			it.Event = new(TokenApproval)
+			it.Event = new(Erc721Approval)
 			if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
 				it.fail = err
 				return false
@@ -448,7 +510,7 @@ func (it *TokenApprovalIterator) Next() bool {
 	// Iterator still in progress, wait for either a data or an error event
 	select {
 	case log := <-it.logs:
-		it.Event = new(TokenApproval)
+		it.Event = new(Erc721Approval)
 		if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
 			it.fail = err
 			return false
@@ -464,19 +526,19 @@ func (it *TokenApprovalIterator) Next() bool {
 }
 
 // Error returns any retrieval or parsing error occurred during filtering.
-func (it *TokenApprovalIterator) Error() error {
+func (it *Erc721ApprovalIterator) Error() error {
 	return it.fail
 }
 
 // Close terminates the iteration process, releasing any pending underlying
 // resources.
-func (it *TokenApprovalIterator) Close() error {
+func (it *Erc721ApprovalIterator) Close() error {
 	it.sub.Unsubscribe()
 	return nil
 }
 
-// TokenApproval represents a Approval event raised by the Token contract.
-type TokenApproval struct {
+// Erc721Approval represents a Approval event raised by the Erc721 contract.
+type Erc721Approval struct {
 	Owner    common.Address
 	Approved common.Address
 	TokenId  *big.Int
@@ -486,7 +548,7 @@ type TokenApproval struct {
 // FilterApproval is a free log retrieval operation binding the contract event 0x8c5be1e5ebec7d5bd14f71427d1e84f3dd0314c0f7b2291e5b200ac8c7c3b925.
 //
 // Solidity: event Approval(address indexed owner, address indexed approved, uint256 indexed tokenId)
-func (_Token *TokenFilterer) FilterApproval(opts *bind.FilterOpts, owner []common.Address, approved []common.Address, tokenId []*big.Int) (*TokenApprovalIterator, error) {
+func (_Erc721 *Erc721Filterer) FilterApproval(opts *bind.FilterOpts, owner []common.Address, approved []common.Address, tokenId []*big.Int) (*Erc721ApprovalIterator, error) {
 
 	var ownerRule []interface{}
 	for _, ownerItem := range owner {
@@ -501,17 +563,17 @@ func (_Token *TokenFilterer) FilterApproval(opts *bind.FilterOpts, owner []commo
 		tokenIdRule = append(tokenIdRule, tokenIdItem)
 	}
 
-	logs, sub, err := _Token.contract.FilterLogs(opts, "Approval", ownerRule, approvedRule, tokenIdRule)
+	logs, sub, err := _Erc721.contract.FilterLogs(opts, "Approval", ownerRule, approvedRule, tokenIdRule)
 	if err != nil {
 		return nil, err
 	}
-	return &TokenApprovalIterator{contract: _Token.contract, event: "Approval", logs: logs, sub: sub}, nil
+	return &Erc721ApprovalIterator{contract: _Erc721.contract, event: "Approval", logs: logs, sub: sub}, nil
 }
 
 // WatchApproval is a free log subscription operation binding the contract event 0x8c5be1e5ebec7d5bd14f71427d1e84f3dd0314c0f7b2291e5b200ac8c7c3b925.
 //
 // Solidity: event Approval(address indexed owner, address indexed approved, uint256 indexed tokenId)
-func (_Token *TokenFilterer) WatchApproval(opts *bind.WatchOpts, sink chan<- *TokenApproval, owner []common.Address, approved []common.Address, tokenId []*big.Int) (event.Subscription, error) {
+func (_Erc721 *Erc721Filterer) WatchApproval(opts *bind.WatchOpts, sink chan<- *Erc721Approval, owner []common.Address, approved []common.Address, tokenId []*big.Int) (event.Subscription, error) {
 
 	var ownerRule []interface{}
 	for _, ownerItem := range owner {
@@ -526,7 +588,7 @@ func (_Token *TokenFilterer) WatchApproval(opts *bind.WatchOpts, sink chan<- *To
 		tokenIdRule = append(tokenIdRule, tokenIdItem)
 	}
 
-	logs, sub, err := _Token.contract.WatchLogs(opts, "Approval", ownerRule, approvedRule, tokenIdRule)
+	logs, sub, err := _Erc721.contract.WatchLogs(opts, "Approval", ownerRule, approvedRule, tokenIdRule)
 	if err != nil {
 		return nil, err
 	}
@@ -536,8 +598,8 @@ func (_Token *TokenFilterer) WatchApproval(opts *bind.WatchOpts, sink chan<- *To
 			select {
 			case log := <-logs:
 				// New log arrived, parse the event and forward to the user
-				event := new(TokenApproval)
-				if err := _Token.contract.UnpackLog(event, "Approval", log); err != nil {
+				event := new(Erc721Approval)
+				if err := _Erc721.contract.UnpackLog(event, "Approval", log); err != nil {
 					return err
 				}
 				event.Raw = log
@@ -561,18 +623,18 @@ func (_Token *TokenFilterer) WatchApproval(opts *bind.WatchOpts, sink chan<- *To
 // ParseApproval is a log parse operation binding the contract event 0x8c5be1e5ebec7d5bd14f71427d1e84f3dd0314c0f7b2291e5b200ac8c7c3b925.
 //
 // Solidity: event Approval(address indexed owner, address indexed approved, uint256 indexed tokenId)
-func (_Token *TokenFilterer) ParseApproval(log types.Log) (*TokenApproval, error) {
-	event := new(TokenApproval)
-	if err := _Token.contract.UnpackLog(event, "Approval", log); err != nil {
+func (_Erc721 *Erc721Filterer) ParseApproval(log types.Log) (*Erc721Approval, error) {
+	event := new(Erc721Approval)
+	if err := _Erc721.contract.UnpackLog(event, "Approval", log); err != nil {
 		return nil, err
 	}
 	event.Raw = log
 	return event, nil
 }
 
-// TokenApprovalForAllIterator is returned from FilterApprovalForAll and is used to iterate over the raw logs and unpacked data for ApprovalForAll events raised by the Token contract.
-type TokenApprovalForAllIterator struct {
-	Event *TokenApprovalForAll // Event containing the contract specifics and raw log
+// Erc721ApprovalForAllIterator is returned from FilterApprovalForAll and is used to iterate over the raw logs and unpacked data for ApprovalForAll events raised by the Erc721 contract.
+type Erc721ApprovalForAllIterator struct {
+	Event *Erc721ApprovalForAll // Event containing the contract specifics and raw log
 
 	contract *bind.BoundContract // Generic contract to use for unpacking event data
 	event    string              // Event name to use for unpacking event data
@@ -586,7 +648,7 @@ type TokenApprovalForAllIterator struct {
 // Next advances the iterator to the subsequent event, returning whether there
 // are any more events found. In case of a retrieval or parsing error, false is
 // returned and Error() can be queried for the exact failure.
-func (it *TokenApprovalForAllIterator) Next() bool {
+func (it *Erc721ApprovalForAllIterator) Next() bool {
 	// If the iterator failed, stop iterating
 	if it.fail != nil {
 		return false
@@ -595,7 +657,7 @@ func (it *TokenApprovalForAllIterator) Next() bool {
 	if it.done {
 		select {
 		case log := <-it.logs:
-			it.Event = new(TokenApprovalForAll)
+			it.Event = new(Erc721ApprovalForAll)
 			if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
 				it.fail = err
 				return false
@@ -610,7 +672,7 @@ func (it *TokenApprovalForAllIterator) Next() bool {
 	// Iterator still in progress, wait for either a data or an error event
 	select {
 	case log := <-it.logs:
-		it.Event = new(TokenApprovalForAll)
+		it.Event = new(Erc721ApprovalForAll)
 		if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
 			it.fail = err
 			return false
@@ -626,19 +688,19 @@ func (it *TokenApprovalForAllIterator) Next() bool {
 }
 
 // Error returns any retrieval or parsing error occurred during filtering.
-func (it *TokenApprovalForAllIterator) Error() error {
+func (it *Erc721ApprovalForAllIterator) Error() error {
 	return it.fail
 }
 
 // Close terminates the iteration process, releasing any pending underlying
 // resources.
-func (it *TokenApprovalForAllIterator) Close() error {
+func (it *Erc721ApprovalForAllIterator) Close() error {
 	it.sub.Unsubscribe()
 	return nil
 }
 
-// TokenApprovalForAll represents a ApprovalForAll event raised by the Token contract.
-type TokenApprovalForAll struct {
+// Erc721ApprovalForAll represents a ApprovalForAll event raised by the Erc721 contract.
+type Erc721ApprovalForAll struct {
 	Owner    common.Address
 	Operator common.Address
 	Approved bool
@@ -648,7 +710,7 @@ type TokenApprovalForAll struct {
 // FilterApprovalForAll is a free log retrieval operation binding the contract event 0x17307eab39ab6107e8899845ad3d59bd9653f200f220920489ca2b5937696c31.
 //
 // Solidity: event ApprovalForAll(address indexed owner, address indexed operator, bool approved)
-func (_Token *TokenFilterer) FilterApprovalForAll(opts *bind.FilterOpts, owner []common.Address, operator []common.Address) (*TokenApprovalForAllIterator, error) {
+func (_Erc721 *Erc721Filterer) FilterApprovalForAll(opts *bind.FilterOpts, owner []common.Address, operator []common.Address) (*Erc721ApprovalForAllIterator, error) {
 
 	var ownerRule []interface{}
 	for _, ownerItem := range owner {
@@ -659,17 +721,17 @@ func (_Token *TokenFilterer) FilterApprovalForAll(opts *bind.FilterOpts, owner [
 		operatorRule = append(operatorRule, operatorItem)
 	}
 
-	logs, sub, err := _Token.contract.FilterLogs(opts, "ApprovalForAll", ownerRule, operatorRule)
+	logs, sub, err := _Erc721.contract.FilterLogs(opts, "ApprovalForAll", ownerRule, operatorRule)
 	if err != nil {
 		return nil, err
 	}
-	return &TokenApprovalForAllIterator{contract: _Token.contract, event: "ApprovalForAll", logs: logs, sub: sub}, nil
+	return &Erc721ApprovalForAllIterator{contract: _Erc721.contract, event: "ApprovalForAll", logs: logs, sub: sub}, nil
 }
 
 // WatchApprovalForAll is a free log subscription operation binding the contract event 0x17307eab39ab6107e8899845ad3d59bd9653f200f220920489ca2b5937696c31.
 //
 // Solidity: event ApprovalForAll(address indexed owner, address indexed operator, bool approved)
-func (_Token *TokenFilterer) WatchApprovalForAll(opts *bind.WatchOpts, sink chan<- *TokenApprovalForAll, owner []common.Address, operator []common.Address) (event.Subscription, error) {
+func (_Erc721 *Erc721Filterer) WatchApprovalForAll(opts *bind.WatchOpts, sink chan<- *Erc721ApprovalForAll, owner []common.Address, operator []common.Address) (event.Subscription, error) {
 
 	var ownerRule []interface{}
 	for _, ownerItem := range owner {
@@ -680,7 +742,7 @@ func (_Token *TokenFilterer) WatchApprovalForAll(opts *bind.WatchOpts, sink chan
 		operatorRule = append(operatorRule, operatorItem)
 	}
 
-	logs, sub, err := _Token.contract.WatchLogs(opts, "ApprovalForAll", ownerRule, operatorRule)
+	logs, sub, err := _Erc721.contract.WatchLogs(opts, "ApprovalForAll", ownerRule, operatorRule)
 	if err != nil {
 		return nil, err
 	}
@@ -690,8 +752,8 @@ func (_Token *TokenFilterer) WatchApprovalForAll(opts *bind.WatchOpts, sink chan
 			select {
 			case log := <-logs:
 				// New log arrived, parse the event and forward to the user
-				event := new(TokenApprovalForAll)
-				if err := _Token.contract.UnpackLog(event, "ApprovalForAll", log); err != nil {
+				event := new(Erc721ApprovalForAll)
+				if err := _Erc721.contract.UnpackLog(event, "ApprovalForAll", log); err != nil {
 					return err
 				}
 				event.Raw = log
@@ -715,18 +777,18 @@ func (_Token *TokenFilterer) WatchApprovalForAll(opts *bind.WatchOpts, sink chan
 // ParseApprovalForAll is a log parse operation binding the contract event 0x17307eab39ab6107e8899845ad3d59bd9653f200f220920489ca2b5937696c31.
 //
 // Solidity: event ApprovalForAll(address indexed owner, address indexed operator, bool approved)
-func (_Token *TokenFilterer) ParseApprovalForAll(log types.Log) (*TokenApprovalForAll, error) {
-	event := new(TokenApprovalForAll)
-	if err := _Token.contract.UnpackLog(event, "ApprovalForAll", log); err != nil {
+func (_Erc721 *Erc721Filterer) ParseApprovalForAll(log types.Log) (*Erc721ApprovalForAll, error) {
+	event := new(Erc721ApprovalForAll)
+	if err := _Erc721.contract.UnpackLog(event, "ApprovalForAll", log); err != nil {
 		return nil, err
 	}
 	event.Raw = log
 	return event, nil
 }
 
-// TokenTransferIterator is returned from FilterTransfer and is used to iterate over the raw logs and unpacked data for Transfer events raised by the Token contract.
-type TokenTransferIterator struct {
-	Event *TokenTransfer // Event containing the contract specifics and raw log
+// Erc721TransferIterator is returned from FilterTransfer and is used to iterate over the raw logs and unpacked data for Transfer events raised by the Erc721 contract.
+type Erc721TransferIterator struct {
+	Event *Erc721Transfer // Event containing the contract specifics and raw log
 
 	contract *bind.BoundContract // Generic contract to use for unpacking event data
 	event    string              // Event name to use for unpacking event data
@@ -740,7 +802,7 @@ type TokenTransferIterator struct {
 // Next advances the iterator to the subsequent event, returning whether there
 // are any more events found. In case of a retrieval or parsing error, false is
 // returned and Error() can be queried for the exact failure.
-func (it *TokenTransferIterator) Next() bool {
+func (it *Erc721TransferIterator) Next() bool {
 	// If the iterator failed, stop iterating
 	if it.fail != nil {
 		return false
@@ -749,7 +811,7 @@ func (it *TokenTransferIterator) Next() bool {
 	if it.done {
 		select {
 		case log := <-it.logs:
-			it.Event = new(TokenTransfer)
+			it.Event = new(Erc721Transfer)
 			if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
 				it.fail = err
 				return false
@@ -764,7 +826,7 @@ func (it *TokenTransferIterator) Next() bool {
 	// Iterator still in progress, wait for either a data or an error event
 	select {
 	case log := <-it.logs:
-		it.Event = new(TokenTransfer)
+		it.Event = new(Erc721Transfer)
 		if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
 			it.fail = err
 			return false
@@ -780,19 +842,19 @@ func (it *TokenTransferIterator) Next() bool {
 }
 
 // Error returns any retrieval or parsing error occurred during filtering.
-func (it *TokenTransferIterator) Error() error {
+func (it *Erc721TransferIterator) Error() error {
 	return it.fail
 }
 
 // Close terminates the iteration process, releasing any pending underlying
 // resources.
-func (it *TokenTransferIterator) Close() error {
+func (it *Erc721TransferIterator) Close() error {
 	it.sub.Unsubscribe()
 	return nil
 }
 
-// TokenTransfer represents a Transfer event raised by the Token contract.
-type TokenTransfer struct {
+// Erc721Transfer represents a Transfer event raised by the Erc721 contract.
+type Erc721Transfer struct {
 	From    common.Address
 	To      common.Address
 	TokenId *big.Int
@@ -802,7 +864,7 @@ type TokenTransfer struct {
 // FilterTransfer is a free log retrieval operation binding the contract event 0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef.
 //
 // Solidity: event Transfer(address indexed from, address indexed to, uint256 indexed tokenId)
-func (_Token *TokenFilterer) FilterTransfer(opts *bind.FilterOpts, from []common.Address, to []common.Address, tokenId []*big.Int) (*TokenTransferIterator, error) {
+func (_Erc721 *Erc721Filterer) FilterTransfer(opts *bind.FilterOpts, from []common.Address, to []common.Address, tokenId []*big.Int) (*Erc721TransferIterator, error) {
 
 	var fromRule []interface{}
 	for _, fromItem := range from {
@@ -817,17 +879,17 @@ func (_Token *TokenFilterer) FilterTransfer(opts *bind.FilterOpts, from []common
 		tokenIdRule = append(tokenIdRule, tokenIdItem)
 	}
 
-	logs, sub, err := _Token.contract.FilterLogs(opts, "Transfer", fromRule, toRule, tokenIdRule)
+	logs, sub, err := _Erc721.contract.FilterLogs(opts, "Transfer", fromRule, toRule, tokenIdRule)
 	if err != nil {
 		return nil, err
 	}
-	return &TokenTransferIterator{contract: _Token.contract, event: "Transfer", logs: logs, sub: sub}, nil
+	return &Erc721TransferIterator{contract: _Erc721.contract, event: "Transfer", logs: logs, sub: sub}, nil
 }
 
 // WatchTransfer is a free log subscription operation binding the contract event 0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef.
 //
 // Solidity: event Transfer(address indexed from, address indexed to, uint256 indexed tokenId)
-func (_Token *TokenFilterer) WatchTransfer(opts *bind.WatchOpts, sink chan<- *TokenTransfer, from []common.Address, to []common.Address, tokenId []*big.Int) (event.Subscription, error) {
+func (_Erc721 *Erc721Filterer) WatchTransfer(opts *bind.WatchOpts, sink chan<- *Erc721Transfer, from []common.Address, to []common.Address, tokenId []*big.Int) (event.Subscription, error) {
 
 	var fromRule []interface{}
 	for _, fromItem := range from {
@@ -842,7 +904,7 @@ func (_Token *TokenFilterer) WatchTransfer(opts *bind.WatchOpts, sink chan<- *To
 		tokenIdRule = append(tokenIdRule, tokenIdItem)
 	}
 
-	logs, sub, err := _Token.contract.WatchLogs(opts, "Transfer", fromRule, toRule, tokenIdRule)
+	logs, sub, err := _Erc721.contract.WatchLogs(opts, "Transfer", fromRule, toRule, tokenIdRule)
 	if err != nil {
 		return nil, err
 	}
@@ -852,8 +914,8 @@ func (_Token *TokenFilterer) WatchTransfer(opts *bind.WatchOpts, sink chan<- *To
 			select {
 			case log := <-logs:
 				// New log arrived, parse the event and forward to the user
-				event := new(TokenTransfer)
-				if err := _Token.contract.UnpackLog(event, "Transfer", log); err != nil {
+				event := new(Erc721Transfer)
+				if err := _Erc721.contract.UnpackLog(event, "Transfer", log); err != nil {
 					return err
 				}
 				event.Raw = log
@@ -877,9 +939,9 @@ func (_Token *TokenFilterer) WatchTransfer(opts *bind.WatchOpts, sink chan<- *To
 // ParseTransfer is a log parse operation binding the contract event 0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef.
 //
 // Solidity: event Transfer(address indexed from, address indexed to, uint256 indexed tokenId)
-func (_Token *TokenFilterer) ParseTransfer(log types.Log) (*TokenTransfer, error) {
-	event := new(TokenTransfer)
-	if err := _Token.contract.UnpackLog(event, "Transfer", log); err != nil {
+func (_Erc721 *Erc721Filterer) ParseTransfer(log types.Log) (*Erc721Transfer, error) {
+	event := new(Erc721Transfer)
+	if err := _Erc721.contract.UnpackLog(event, "Transfer", log); err != nil {
 		return nil, err
 	}
 	event.Raw = log
