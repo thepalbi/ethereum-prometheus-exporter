@@ -18,7 +18,7 @@ func TestEthSyncingCollectError(t *testing.T) {
 		t.Fatalf("rpc connection error: %#v", err)
 	}
 
-	collector := NewEthSyncing(rpc, blockchainName)
+	collector := NewEthSyncing(rpc, mockBlockchainName)
 	ch := make(chan prometheus.Metric, 3)
 
 	collector.Collect(ch)
@@ -54,7 +54,7 @@ func TestEthSyncingCollectNotSyncing(t *testing.T) {
 		t.Fatalf("rpc connection error: %#v", err)
 	}
 
-	collector := NewEthSyncing(rpc, blockchainName)
+	collector := NewEthSyncing(rpc, mockBlockchainName)
 	ch := make(chan prometheus.Metric, 3)
 
 	collector.Collect(ch)
@@ -90,7 +90,7 @@ func TestEthSyncingCollectUnmarshalError(t *testing.T) {
 		t.Fatalf("rpc connection error: %#v", err)
 	}
 
-	collector := NewEthSyncing(rpc, blockchainName)
+	collector := NewEthSyncing(rpc, mockBlockchainName)
 	ch := make(chan prometheus.Metric, 3)
 
 	collector.Collect(ch)
@@ -126,7 +126,7 @@ func TestEthSyncingCollect(t *testing.T) {
 		t.Fatalf("rpc connection error: %#v", err)
 	}
 
-	collector := NewEthSyncing(rpc, blockchainName)
+	collector := NewEthSyncing(rpc, mockBlockchainName)
 	ch := make(chan prometheus.Metric, 3)
 
 	collector.Collect(ch)
