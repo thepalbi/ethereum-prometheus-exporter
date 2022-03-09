@@ -2,7 +2,7 @@ package eth
 
 import (
 	"fmt"
-	"github.com/31z4/ethereum-prometheus-exporter/internal/config"
+	"github.com/thepalbi/ethereum-prometheus-exporter/internal/config"
 	"net/http"
 	"net/http/httptest"
 	"testing"

@@ -4,18 +4,17 @@ import (
 	"context"
 	"flag"
 	"fmt"
+	"github.com/thepalbi/ethereum-prometheus-exporter/internal/collectors/net"
 	"log"
 	"net/http"
 	"os"
 
-	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/ethclient"
 	"github.com/ethereum/go-ethereum/rpc"
 	"github.com/prometheus/client_golang/prometheus"
 	"github.com/prometheus/client_golang/prometheus/promhttp"
 	"github.com/thepalbi/ethereum-prometheus-exporter/internal/collectors/contracts/erc20"
 	"github.com/thepalbi/ethereum-prometheus-exporter/internal/collectors/eth"
-	"github.com/thepalbi/ethereum-prometheus-exporter/internal/collectors/net"
 	"github.com/thepalbi/ethereum-prometheus-exporter/internal/config"
 )
 
@@ -77,26 +76,25 @@ func main() {
 	// ERC-20 Targets
 	log.Printf("Detected %d ERC-20 smart contract(s) to monitor\n", len(cfg.Target.ERC20))
 
-	coll, err := erc20.NewERC20TransferEvent(client, addresses, cfg.General.StartBlockNumber)
+	coll, err := erc20.NewERC20TransferEvent(client, cfg.Target.ERC20, cfg.General.StartBlockNumber)
 	if err != nil {
 		log.Fatalf("failed to create erc20 transfer collector: %v", err)
 	}
 
 	// Wallet  Target
-	collectorGetAddressBalance := eth.NewEthGetBalance(rpc, cfg.Target.Wallet.Addr)
+	collectorGetAddressBalance := eth.NewEthGetBalance(rpc, cfg.Target.Wallet)
 
 	registry := prometheus.NewPedanticRegistry()
 	registry.MustRegister(
-		collector.NewNetPeerCount(rpc, cfg.General.EthBlockchainName),
-		collector.NewEthBlockNumber(rpc, cfg.General.EthBlockchainName),
-		collector.NewEthBlockTimestamp(rpc, cfg.General.EthBlockchainName),
-		collector.NewEthGasPrice(rpc, cfg.General.EthBlockchainName),
-		collector.NewEthEarliestBlockTransactions(rpc, cfg.General.EthBlockchainName),
-		collector.NewEthLatestBlockTransactions(rpc, cfg.General.EthBlockchainName),
-		collector.NewEthPendingBlockTransactions(rpc, cfg.General.EthBlockchainName),
-		collector.NewEthHashrate(rpc, cfg.General.EthBlockchainName),
-		collector.NewEthSyncing(rpc, cfg.General.EthBlockchainName),
-		collector.NewParityNetPeers(rpc, cfg.General.EthBlockchainName),
+		net.NewNetPeerCount(rpc, cfg.General.EthBlockchainName),
+		eth.NewEthBlockNumber(rpc, cfg.General.EthBlockchainName),
+		eth.NewEthBlockTimestamp(rpc, cfg.General.EthBlockchainName),
+		eth.NewEthGasPrice(rpc, cfg.General.EthBlockchainName),
+		eth.NewEthEarliestBlockTransactions(rpc, cfg.General.EthBlockchainName),
+		eth.NewEthLatestBlockTransactions(rpc, cfg.General.EthBlockchainName),
+		eth.NewEthPendingBlockTransactions(rpc, cfg.General.EthBlockchainName),
+		eth.NewEthHashrate(rpc, cfg.General.EthBlockchainName),
+		eth.NewEthSyncing(rpc, cfg.General.EthBlockchainName),
 		coll,
 		collectorGetAddressBalance,
 	)

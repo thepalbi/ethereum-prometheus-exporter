@@ -1,4 +1,4 @@
-package collector
+package eth
 
 const (
 	mockWalletAddress = "0x1234567890abcdef1234567890abcdef12345678"

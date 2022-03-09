@@ -1,12 +1,12 @@
 package eth
 
 import (
-	"github.com/31z4/ethereum-prometheus-exporter/internal/config"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/common/hexutil"
 	"github.com/ethereum/go-ethereum/rpc"
 	"github.com/pkg/errors"
 	"github.com/prometheus/client_golang/prometheus"
+	"github.com/thepalbi/ethereum-prometheus-exporter/internal/config"
 )
 
 type EthGetBalance struct {

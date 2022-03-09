@@ -28,7 +28,6 @@ require (
 	github.com/prometheus/procfs v0.7.1 // indirect
 	github.com/rjeczalik/notify v0.9.1 // indirect
 	github.com/shirou/gopsutil v3.21.7+incompatible // indirect
-	github.com/stretchr/objx v0.1.1 // indirect
 	github.com/stretchr/testify v1.7.0 // indirect
 	github.com/tklauser/go-sysconf v0.3.7 // indirect
 	github.com/tklauser/numcpus v0.2.3 // indirect

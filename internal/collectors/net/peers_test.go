@@ -17,7 +17,7 @@ func TestNetPeerCountCollectError(t *testing.T) {
 		t.Fatalf("rpc connection error: %#v", err)
 	}
 
-	collector := NewNetPeerCount(rpc, blockchainName)
+	collector := NewNetPeerCount(rpc, "test_blockchain")
 	ch := make(chan prometheus.Metric, 1)
 
 	collector.Collect(ch)
@@ -53,7 +53,7 @@ func TestNetPeerCountCollect(t *testing.T) {
 		t.Fatalf("rpc connection error: %#v", err)
 	}
 
-	collector := NewNetPeerCount(rpc, blockchainName)
+	collector := NewNetPeerCount(rpc, "test_blockchain")
 	ch := make(chan prometheus.Metric, 1)
 
 	collector.Collect(ch)
