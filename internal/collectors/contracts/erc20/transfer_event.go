@@ -28,7 +28,7 @@ type contractInfo struct {
 	Address  string
 	Symbol   string
 	Decimals uint8
-	Label    string
+	Name     string
 }
 
 type ERC20TransferEvent struct {
@@ -39,7 +39,7 @@ type ERC20TransferEvent struct {
 	bnGetter         BlockNumberGetter
 }
 
-func getContractInfo(contractAddr common.Address, contractClient bind.ContractCaller, label string) (*contractInfo, error) {
+func getContractInfo(contractAddr common.Address, contractClient bind.ContractCaller, name string) (*contractInfo, error) {
 	contractCaller, err := token.NewTokenCaller(contractAddr, contractClient)
 	if err != nil {
 		return nil, errors.Wrapf(err, "failed to get contract info for %s", contractAddr.Hex())
@@ -56,7 +56,7 @@ func getContractInfo(contractAddr common.Address, contractClient bind.ContractCa
 		Address:  contractAddr.Hex(),
 		Symbol:   symbol,
 		Decimals: decimals,
-		Label:    label,
+		Name:     name,
 	}, nil
 }
 
@@ -73,7 +73,7 @@ func NewERC20TransferEvent(client ContractClient, contractAddresses []config.ERC
 			return nil, err
 		}
 
-		log.Printf("Got info for %s, symbol %s, address_name %s\n", info.Address, info.Symbol, info.Label)
+		log.Printf("Got info for %s, symbol %s, with name %s\n", info.Address, info.Symbol, info.Name)
 		clients[info] = filterer
 	}
 
@@ -82,7 +82,7 @@ func NewERC20TransferEvent(client ContractClient, contractAddresses []config.ERC
 		desc: prometheus.NewDesc(
 			"erc20_transfer_event",
 			"ERC20 Transfer events count",
-			[]string{"contract", "symbol", "address_name"},
+			[]string{"contract", "symbol", "name"},
 			nil,
 		),
 		lastQueriedBlock: nowBlockNumber,
@@ -114,7 +114,7 @@ func (col *ERC20TransferEvent) doCollect(ch chan<- prometheus.Metric, currentBlo
 		eventsLeft := it.Next()
 		if !eventsLeft && it.Error() == nil {
 			// Finished reading events, advance lastQueriedBlock and publish histogram data
-			ch <- prometheus.MustNewConstHistogram(col.desc, count, sum, nil, info.Address, info.Symbol, info.Label)
+			ch <- prometheus.MustNewConstHistogram(col.desc, count, sum, nil, info.Address, info.Symbol, info.Name)
 			return
 		} else if !eventsLeft {
 			wErr := errors.Wrapf(err, "failed to read transfer event for contract=[%s]", info.Address)

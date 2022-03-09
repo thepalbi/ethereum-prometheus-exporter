@@ -11,14 +11,14 @@ type EthHashrate struct {
 	desc *prometheus.Desc
 }
 
-func NewEthHashrate(rpc *rpc.Client, label string) *EthHashrate {
+func NewEthHashrate(rpc *rpc.Client, blockchain string) *EthHashrate {
 	return &EthHashrate{
 		rpc: rpc,
 		desc: prometheus.NewDesc(
 			"eth_hashrate",
 			"hashes per second that this node is mining with",
 			nil,
-			map[string]string{"blockchain_name": label},
+			map[string]string{"blockchain": blockchain},
 		),
 	}
 }

@@ -13,14 +13,14 @@ type EthGasPrice struct {
 	desc *prometheus.Desc
 }
 
-func NewEthGasPrice(rpc *rpc.Client, label string) *EthGasPrice {
+func NewEthGasPrice(rpc *rpc.Client, blockchain string) *EthGasPrice {
 	return &EthGasPrice{
 		rpc: rpc,
 		desc: prometheus.NewDesc(
 			"eth_gas_price",
 			"current gas price in wei",
 			nil,
-			map[string]string{"blockchain_name": label},
+			map[string]string{"blockchain": blockchain},
 		),
 	}
 }

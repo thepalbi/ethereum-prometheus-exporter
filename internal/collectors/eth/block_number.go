@@ -11,14 +11,14 @@ type EthBlockNumber struct {
 	desc *prometheus.Desc
 }
 
-func NewEthBlockNumber(rpc *rpc.Client, label string) *EthBlockNumber {
+func NewEthBlockNumber(rpc *rpc.Client, blockchain string) *EthBlockNumber {
 	return &EthBlockNumber{
 		rpc: rpc,
 		desc: prometheus.NewDesc(
 			"eth_block_number",
 			"number of the most recent block",
 			nil,
-			map[string]string{"blockchain_name": label},
+			map[string]string{"blockchain": blockchain},
 		),
 	}
 }

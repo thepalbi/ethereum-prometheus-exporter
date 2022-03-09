@@ -11,14 +11,14 @@ type NetPeerCount struct {
 	desc *prometheus.Desc
 }
 
-func NewNetPeerCount(rpc *rpc.Client, label string) *NetPeerCount {
+func NewNetPeerCount(rpc *rpc.Client, blockchain string) *NetPeerCount {
 	return &NetPeerCount{
 		rpc: rpc,
 		desc: prometheus.NewDesc(
 			"net_peers",
 			"number of peers currently connected to the client",
 			nil,
-			map[string]string{"blockchain_name": label},
+			map[string]string{"blockchain": blockchain},
 		),
 	}
 }
