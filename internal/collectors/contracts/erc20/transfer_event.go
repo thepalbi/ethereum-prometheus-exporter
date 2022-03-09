@@ -45,7 +45,7 @@ func (col *TransferEvent) Describe(ch chan<- *prometheus.Desc) {
 	ch <- col.desc
 }
 
-func (col *TransferEvent) doCollect(ch chan<- prometheus.Metric, currentBlockNumber uint64, info *contractInfo, client *erc20.Erc20Filterer) {
+func (col *TransferEvent) doCollect(ch chan<- prometheus.Metric, currentBlockNumber uint64, info *contractInfo, client *erc20.ContractFilterer) {
 	it, err := client.FilterTransfer(&bind.FilterOpts{
 		Context: context.Background(),
 		Start:   col.lastQueriedBlock,
@@ -96,7 +96,7 @@ func (col *TransferEvent) Collect(ch chan<- prometheus.Metric) {
 	for contrInfo, client := range col.contractClients {
 		wg.Add(1)
 
-		go func(contrInfo *contractInfo, client *erc20.Erc20Filterer) {
+		go func(contrInfo *contractInfo, client *erc20.ContractFilterer) {
 			defer wg.Done()
 			col.doCollect(ch, currentBlockNumber, contrInfo, client)
 		}(contrInfo, client)

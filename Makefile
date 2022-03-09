@@ -34,7 +34,7 @@ $(CONTRACT_CLIENTS_DIR)/%/client.go:
 	@echo "Generating ABI for $@"
 	solc --abi $(patsubst $(CONTRACT_CLIENTS_DIR)/%/client.go,$(CONTRACTS_DIR)/%.sol,$@) -o build --overwrite
 	@echo "Compiling ABI for $@"
-	abigen --abi=$(patsubst $(CONTRACT_CLIENTS_DIR)/%/client.go,$(GENERATED_ABI_DIR)/%.abi,$@) --pkg=$(patsubst $(CONTRACT_CLIENTS_DIR)/%/client.go,%,$@) --out=$@
+	abigen --abi=$(patsubst $(CONTRACT_CLIENTS_DIR)/%/client.go,$(GENERATED_ABI_DIR)/%.abi,$@) --pkg=$(patsubst $(CONTRACT_CLIENTS_DIR)/%/client.go,%,$@) --type=Contract --out=$@
 
 # Debug goal. Commented
 # debug: $(info $$CONTRACT_CLIENTS is [${CONTRACT_CLIENTS}])

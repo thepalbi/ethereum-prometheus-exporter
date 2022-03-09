@@ -28,113 +28,113 @@ var (
 	_ = event.NewSubscription
 )
 
-// Erc20MetaData contains all meta data concerning the Erc20 contract.
-var Erc20MetaData = &bind.MetaData{
+// ContractMetaData contains all meta data concerning the Contract contract.
+var ContractMetaData = &bind.MetaData{
 	ABI: "[{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"tokenOwner\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"spender\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"tokens\",\"type\":\"uint256\"}],\"name\":\"Approval\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"from\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"to\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"tokens\",\"type\":\"uint256\"}],\"name\":\"Transfer\",\"type\":\"event\"},{\"inputs\":[],\"name\":\"decimals\",\"outputs\":[{\"internalType\":\"uint8\",\"name\":\"\",\"type\":\"uint8\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"name\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"symbol\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"}],\"stateMutability\":\"view\",\"type\":\"function\"}]",
 }
 
-// Erc20ABI is the input ABI used to generate the binding from.
-// Deprecated: Use Erc20MetaData.ABI instead.
-var Erc20ABI = Erc20MetaData.ABI
+// ContractABI is the input ABI used to generate the binding from.
+// Deprecated: Use ContractMetaData.ABI instead.
+var ContractABI = ContractMetaData.ABI
 
-// Erc20 is an auto generated Go binding around an Ethereum contract.
-type Erc20 struct {
-	Erc20Caller     // Read-only binding to the contract
-	Erc20Transactor // Write-only binding to the contract
-	Erc20Filterer   // Log filterer for contract events
+// Contract is an auto generated Go binding around an Ethereum contract.
+type Contract struct {
+	ContractCaller     // Read-only binding to the contract
+	ContractTransactor // Write-only binding to the contract
+	ContractFilterer   // Log filterer for contract events
 }
 
-// Erc20Caller is an auto generated read-only Go binding around an Ethereum contract.
-type Erc20Caller struct {
+// ContractCaller is an auto generated read-only Go binding around an Ethereum contract.
+type ContractCaller struct {
 	contract *bind.BoundContract // Generic contract wrapper for the low level calls
 }
 
-// Erc20Transactor is an auto generated write-only Go binding around an Ethereum contract.
-type Erc20Transactor struct {
+// ContractTransactor is an auto generated write-only Go binding around an Ethereum contract.
+type ContractTransactor struct {
 	contract *bind.BoundContract // Generic contract wrapper for the low level calls
 }
 
-// Erc20Filterer is an auto generated log filtering Go binding around an Ethereum contract events.
-type Erc20Filterer struct {
+// ContractFilterer is an auto generated log filtering Go binding around an Ethereum contract events.
+type ContractFilterer struct {
 	contract *bind.BoundContract // Generic contract wrapper for the low level calls
 }
 
-// Erc20Session is an auto generated Go binding around an Ethereum contract,
+// ContractSession is an auto generated Go binding around an Ethereum contract,
 // with pre-set call and transact options.
-type Erc20Session struct {
-	Contract     *Erc20            // Generic contract binding to set the session for
+type ContractSession struct {
+	Contract     *Contract         // Generic contract binding to set the session for
 	CallOpts     bind.CallOpts     // Call options to use throughout this session
 	TransactOpts bind.TransactOpts // Transaction auth options to use throughout this session
 }
 
-// Erc20CallerSession is an auto generated read-only Go binding around an Ethereum contract,
+// ContractCallerSession is an auto generated read-only Go binding around an Ethereum contract,
 // with pre-set call options.
-type Erc20CallerSession struct {
-	Contract *Erc20Caller  // Generic contract caller binding to set the session for
-	CallOpts bind.CallOpts // Call options to use throughout this session
+type ContractCallerSession struct {
+	Contract *ContractCaller // Generic contract caller binding to set the session for
+	CallOpts bind.CallOpts   // Call options to use throughout this session
 }
 
-// Erc20TransactorSession is an auto generated write-only Go binding around an Ethereum contract,
+// ContractTransactorSession is an auto generated write-only Go binding around an Ethereum contract,
 // with pre-set transact options.
-type Erc20TransactorSession struct {
-	Contract     *Erc20Transactor  // Generic contract transactor binding to set the session for
-	TransactOpts bind.TransactOpts // Transaction auth options to use throughout this session
+type ContractTransactorSession struct {
+	Contract     *ContractTransactor // Generic contract transactor binding to set the session for
+	TransactOpts bind.TransactOpts   // Transaction auth options to use throughout this session
 }
 
-// Erc20Raw is an auto generated low-level Go binding around an Ethereum contract.
-type Erc20Raw struct {
-	Contract *Erc20 // Generic contract binding to access the raw methods on
+// ContractRaw is an auto generated low-level Go binding around an Ethereum contract.
+type ContractRaw struct {
+	Contract *Contract // Generic contract binding to access the raw methods on
 }
 
-// Erc20CallerRaw is an auto generated low-level read-only Go binding around an Ethereum contract.
-type Erc20CallerRaw struct {
-	Contract *Erc20Caller // Generic read-only contract binding to access the raw methods on
+// ContractCallerRaw is an auto generated low-level read-only Go binding around an Ethereum contract.
+type ContractCallerRaw struct {
+	Contract *ContractCaller // Generic read-only contract binding to access the raw methods on
 }
 
-// Erc20TransactorRaw is an auto generated low-level write-only Go binding around an Ethereum contract.
-type Erc20TransactorRaw struct {
-	Contract *Erc20Transactor // Generic write-only contract binding to access the raw methods on
+// ContractTransactorRaw is an auto generated low-level write-only Go binding around an Ethereum contract.
+type ContractTransactorRaw struct {
+	Contract *ContractTransactor // Generic write-only contract binding to access the raw methods on
 }
 
-// NewErc20 creates a new instance of Erc20, bound to a specific deployed contract.
-func NewErc20(address common.Address, backend bind.ContractBackend) (*Erc20, error) {
-	contract, err := bindErc20(address, backend, backend, backend)
+// NewContract creates a new instance of Contract, bound to a specific deployed contract.
+func NewContract(address common.Address, backend bind.ContractBackend) (*Contract, error) {
+	contract, err := bindContract(address, backend, backend, backend)
 	if err != nil {
 		return nil, err
 	}
-	return &Erc20{Erc20Caller: Erc20Caller{contract: contract}, Erc20Transactor: Erc20Transactor{contract: contract}, Erc20Filterer: Erc20Filterer{contract: contract}}, nil
+	return &Contract{ContractCaller: ContractCaller{contract: contract}, ContractTransactor: ContractTransactor{contract: contract}, ContractFilterer: ContractFilterer{contract: contract}}, nil
 }
 
-// NewErc20Caller creates a new read-only instance of Erc20, bound to a specific deployed contract.
-func NewErc20Caller(address common.Address, caller bind.ContractCaller) (*Erc20Caller, error) {
-	contract, err := bindErc20(address, caller, nil, nil)
+// NewContractCaller creates a new read-only instance of Contract, bound to a specific deployed contract.
+func NewContractCaller(address common.Address, caller bind.ContractCaller) (*ContractCaller, error) {
+	contract, err := bindContract(address, caller, nil, nil)
 	if err != nil {
 		return nil, err
 	}
-	return &Erc20Caller{contract: contract}, nil
+	return &ContractCaller{contract: contract}, nil
 }
 
-// NewErc20Transactor creates a new write-only instance of Erc20, bound to a specific deployed contract.
-func NewErc20Transactor(address common.Address, transactor bind.ContractTransactor) (*Erc20Transactor, error) {
-	contract, err := bindErc20(address, nil, transactor, nil)
+// NewContractTransactor creates a new write-only instance of Contract, bound to a specific deployed contract.
+func NewContractTransactor(address common.Address, transactor bind.ContractTransactor) (*ContractTransactor, error) {
+	contract, err := bindContract(address, nil, transactor, nil)
 	if err != nil {
 		return nil, err
 	}
-	return &Erc20Transactor{contract: contract}, nil
+	return &ContractTransactor{contract: contract}, nil
 }
 
-// NewErc20Filterer creates a new log filterer instance of Erc20, bound to a specific deployed contract.
-func NewErc20Filterer(address common.Address, filterer bind.ContractFilterer) (*Erc20Filterer, error) {
-	contract, err := bindErc20(address, nil, nil, filterer)
+// NewContractFilterer creates a new log filterer instance of Contract, bound to a specific deployed contract.
+func NewContractFilterer(address common.Address, filterer bind.ContractFilterer) (*ContractFilterer, error) {
+	contract, err := bindContract(address, nil, nil, filterer)
 	if err != nil {
 		return nil, err
 	}
-	return &Erc20Filterer{contract: contract}, nil
+	return &ContractFilterer{contract: contract}, nil
 }
 
-// bindErc20 binds a generic wrapper to an already deployed contract.
-func bindErc20(address common.Address, caller bind.ContractCaller, transactor bind.ContractTransactor, filterer bind.ContractFilterer) (*bind.BoundContract, error) {
-	parsed, err := abi.JSON(strings.NewReader(Erc20ABI))
+// bindContract binds a generic wrapper to an already deployed contract.
+func bindContract(address common.Address, caller bind.ContractCaller, transactor bind.ContractTransactor, filterer bind.ContractFilterer) (*bind.BoundContract, error) {
+	parsed, err := abi.JSON(strings.NewReader(ContractABI))
 	if err != nil {
 		return nil, err
 	}
@@ -145,46 +145,46 @@ func bindErc20(address common.Address, caller bind.ContractCaller, transactor bi
 // sets the output to result. The result type might be a single field for simple
 // returns, a slice of interfaces for anonymous returns and a struct for named
 // returns.
-func (_Erc20 *Erc20Raw) Call(opts *bind.CallOpts, result *[]interface{}, method string, params ...interface{}) error {
-	return _Erc20.Contract.Erc20Caller.contract.Call(opts, result, method, params...)
+func (_Contract *ContractRaw) Call(opts *bind.CallOpts, result *[]interface{}, method string, params ...interface{}) error {
+	return _Contract.Contract.ContractCaller.contract.Call(opts, result, method, params...)
 }
 
 // Transfer initiates a plain transaction to move funds to the contract, calling
 // its default method if one is available.
-func (_Erc20 *Erc20Raw) Transfer(opts *bind.TransactOpts) (*types.Transaction, error) {
-	return _Erc20.Contract.Erc20Transactor.contract.Transfer(opts)
+func (_Contract *ContractRaw) Transfer(opts *bind.TransactOpts) (*types.Transaction, error) {
+	return _Contract.Contract.ContractTransactor.contract.Transfer(opts)
 }
 
 // Transact invokes the (paid) contract method with params as input values.
-func (_Erc20 *Erc20Raw) Transact(opts *bind.TransactOpts, method string, params ...interface{}) (*types.Transaction, error) {
-	return _Erc20.Contract.Erc20Transactor.contract.Transact(opts, method, params...)
+func (_Contract *ContractRaw) Transact(opts *bind.TransactOpts, method string, params ...interface{}) (*types.Transaction, error) {
+	return _Contract.Contract.ContractTransactor.contract.Transact(opts, method, params...)
 }
 
 // Call invokes the (constant) contract method with params as input values and
 // sets the output to result. The result type might be a single field for simple
 // returns, a slice of interfaces for anonymous returns and a struct for named
 // returns.
-func (_Erc20 *Erc20CallerRaw) Call(opts *bind.CallOpts, result *[]interface{}, method string, params ...interface{}) error {
-	return _Erc20.Contract.contract.Call(opts, result, method, params...)
+func (_Contract *ContractCallerRaw) Call(opts *bind.CallOpts, result *[]interface{}, method string, params ...interface{}) error {
+	return _Contract.Contract.contract.Call(opts, result, method, params...)
 }
 
 // Transfer initiates a plain transaction to move funds to the contract, calling
 // its default method if one is available.
-func (_Erc20 *Erc20TransactorRaw) Transfer(opts *bind.TransactOpts) (*types.Transaction, error) {
-	return _Erc20.Contract.contract.Transfer(opts)
+func (_Contract *ContractTransactorRaw) Transfer(opts *bind.TransactOpts) (*types.Transaction, error) {
+	return _Contract.Contract.contract.Transfer(opts)
 }
 
 // Transact invokes the (paid) contract method with params as input values.
-func (_Erc20 *Erc20TransactorRaw) Transact(opts *bind.TransactOpts, method string, params ...interface{}) (*types.Transaction, error) {
-	return _Erc20.Contract.contract.Transact(opts, method, params...)
+func (_Contract *ContractTransactorRaw) Transact(opts *bind.TransactOpts, method string, params ...interface{}) (*types.Transaction, error) {
+	return _Contract.Contract.contract.Transact(opts, method, params...)
 }
 
 // Decimals is a free data retrieval call binding the contract method 0x313ce567.
 //
 // Solidity: function decimals() view returns(uint8)
-func (_Erc20 *Erc20Caller) Decimals(opts *bind.CallOpts) (uint8, error) {
+func (_Contract *ContractCaller) Decimals(opts *bind.CallOpts) (uint8, error) {
 	var out []interface{}
-	err := _Erc20.contract.Call(opts, &out, "decimals")
+	err := _Contract.contract.Call(opts, &out, "decimals")
 
 	if err != nil {
 		return *new(uint8), err
@@ -199,23 +199,23 @@ func (_Erc20 *Erc20Caller) Decimals(opts *bind.CallOpts) (uint8, error) {
 // Decimals is a free data retrieval call binding the contract method 0x313ce567.
 //
 // Solidity: function decimals() view returns(uint8)
-func (_Erc20 *Erc20Session) Decimals() (uint8, error) {
-	return _Erc20.Contract.Decimals(&_Erc20.CallOpts)
+func (_Contract *ContractSession) Decimals() (uint8, error) {
+	return _Contract.Contract.Decimals(&_Contract.CallOpts)
 }
 
 // Decimals is a free data retrieval call binding the contract method 0x313ce567.
 //
 // Solidity: function decimals() view returns(uint8)
-func (_Erc20 *Erc20CallerSession) Decimals() (uint8, error) {
-	return _Erc20.Contract.Decimals(&_Erc20.CallOpts)
+func (_Contract *ContractCallerSession) Decimals() (uint8, error) {
+	return _Contract.Contract.Decimals(&_Contract.CallOpts)
 }
 
 // Name is a free data retrieval call binding the contract method 0x06fdde03.
 //
 // Solidity: function name() view returns(string)
-func (_Erc20 *Erc20Caller) Name(opts *bind.CallOpts) (string, error) {
+func (_Contract *ContractCaller) Name(opts *bind.CallOpts) (string, error) {
 	var out []interface{}
-	err := _Erc20.contract.Call(opts, &out, "name")
+	err := _Contract.contract.Call(opts, &out, "name")
 
 	if err != nil {
 		return *new(string), err
@@ -230,23 +230,23 @@ func (_Erc20 *Erc20Caller) Name(opts *bind.CallOpts) (string, error) {
 // Name is a free data retrieval call binding the contract method 0x06fdde03.
 //
 // Solidity: function name() view returns(string)
-func (_Erc20 *Erc20Session) Name() (string, error) {
-	return _Erc20.Contract.Name(&_Erc20.CallOpts)
+func (_Contract *ContractSession) Name() (string, error) {
+	return _Contract.Contract.Name(&_Contract.CallOpts)
 }
 
 // Name is a free data retrieval call binding the contract method 0x06fdde03.
 //
 // Solidity: function name() view returns(string)
-func (_Erc20 *Erc20CallerSession) Name() (string, error) {
-	return _Erc20.Contract.Name(&_Erc20.CallOpts)
+func (_Contract *ContractCallerSession) Name() (string, error) {
+	return _Contract.Contract.Name(&_Contract.CallOpts)
 }
 
 // Symbol is a free data retrieval call binding the contract method 0x95d89b41.
 //
 // Solidity: function symbol() view returns(string)
-func (_Erc20 *Erc20Caller) Symbol(opts *bind.CallOpts) (string, error) {
+func (_Contract *ContractCaller) Symbol(opts *bind.CallOpts) (string, error) {
 	var out []interface{}
-	err := _Erc20.contract.Call(opts, &out, "symbol")
+	err := _Contract.contract.Call(opts, &out, "symbol")
 
 	if err != nil {
 		return *new(string), err
@@ -261,20 +261,20 @@ func (_Erc20 *Erc20Caller) Symbol(opts *bind.CallOpts) (string, error) {
 // Symbol is a free data retrieval call binding the contract method 0x95d89b41.
 //
 // Solidity: function symbol() view returns(string)
-func (_Erc20 *Erc20Session) Symbol() (string, error) {
-	return _Erc20.Contract.Symbol(&_Erc20.CallOpts)
+func (_Contract *ContractSession) Symbol() (string, error) {
+	return _Contract.Contract.Symbol(&_Contract.CallOpts)
 }
 
 // Symbol is a free data retrieval call binding the contract method 0x95d89b41.
 //
 // Solidity: function symbol() view returns(string)
-func (_Erc20 *Erc20CallerSession) Symbol() (string, error) {
-	return _Erc20.Contract.Symbol(&_Erc20.CallOpts)
+func (_Contract *ContractCallerSession) Symbol() (string, error) {
+	return _Contract.Contract.Symbol(&_Contract.CallOpts)
 }
 
-// Erc20ApprovalIterator is returned from FilterApproval and is used to iterate over the raw logs and unpacked data for Approval events raised by the Erc20 contract.
-type Erc20ApprovalIterator struct {
-	Event *Erc20Approval // Event containing the contract specifics and raw log
+// ContractApprovalIterator is returned from FilterApproval and is used to iterate over the raw logs and unpacked data for Approval events raised by the Contract contract.
+type ContractApprovalIterator struct {
+	Event *ContractApproval // Event containing the contract specifics and raw log
 
 	contract *bind.BoundContract // Generic contract to use for unpacking event data
 	event    string              // Event name to use for unpacking event data
@@ -288,7 +288,7 @@ type Erc20ApprovalIterator struct {
 // Next advances the iterator to the subsequent event, returning whether there
 // are any more events found. In case of a retrieval or parsing error, false is
 // returned and Error() can be queried for the exact failure.
-func (it *Erc20ApprovalIterator) Next() bool {
+func (it *ContractApprovalIterator) Next() bool {
 	// If the iterator failed, stop iterating
 	if it.fail != nil {
 		return false
@@ -297,7 +297,7 @@ func (it *Erc20ApprovalIterator) Next() bool {
 	if it.done {
 		select {
 		case log := <-it.logs:
-			it.Event = new(Erc20Approval)
+			it.Event = new(ContractApproval)
 			if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
 				it.fail = err
 				return false
@@ -312,7 +312,7 @@ func (it *Erc20ApprovalIterator) Next() bool {
 	// Iterator still in progress, wait for either a data or an error event
 	select {
 	case log := <-it.logs:
-		it.Event = new(Erc20Approval)
+		it.Event = new(ContractApproval)
 		if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
 			it.fail = err
 			return false
@@ -328,19 +328,19 @@ func (it *Erc20ApprovalIterator) Next() bool {
 }
 
 // Error returns any retrieval or parsing error occurred during filtering.
-func (it *Erc20ApprovalIterator) Error() error {
+func (it *ContractApprovalIterator) Error() error {
 	return it.fail
 }
 
 // Close terminates the iteration process, releasing any pending underlying
 // resources.
-func (it *Erc20ApprovalIterator) Close() error {
+func (it *ContractApprovalIterator) Close() error {
 	it.sub.Unsubscribe()
 	return nil
 }
 
-// Erc20Approval represents a Approval event raised by the Erc20 contract.
-type Erc20Approval struct {
+// ContractApproval represents a Approval event raised by the Contract contract.
+type ContractApproval struct {
 	TokenOwner common.Address
 	Spender    common.Address
 	Tokens     *big.Int
@@ -350,7 +350,7 @@ type Erc20Approval struct {
 // FilterApproval is a free log retrieval operation binding the contract event 0x8c5be1e5ebec7d5bd14f71427d1e84f3dd0314c0f7b2291e5b200ac8c7c3b925.
 //
 // Solidity: event Approval(address indexed tokenOwner, address indexed spender, uint256 tokens)
-func (_Erc20 *Erc20Filterer) FilterApproval(opts *bind.FilterOpts, tokenOwner []common.Address, spender []common.Address) (*Erc20ApprovalIterator, error) {
+func (_Contract *ContractFilterer) FilterApproval(opts *bind.FilterOpts, tokenOwner []common.Address, spender []common.Address) (*ContractApprovalIterator, error) {
 
 	var tokenOwnerRule []interface{}
 	for _, tokenOwnerItem := range tokenOwner {
@@ -361,17 +361,17 @@ func (_Erc20 *Erc20Filterer) FilterApproval(opts *bind.FilterOpts, tokenOwner []
 		spenderRule = append(spenderRule, spenderItem)
 	}
 
-	logs, sub, err := _Erc20.contract.FilterLogs(opts, "Approval", tokenOwnerRule, spenderRule)
+	logs, sub, err := _Contract.contract.FilterLogs(opts, "Approval", tokenOwnerRule, spenderRule)
 	if err != nil {
 		return nil, err
 	}
-	return &Erc20ApprovalIterator{contract: _Erc20.contract, event: "Approval", logs: logs, sub: sub}, nil
+	return &ContractApprovalIterator{contract: _Contract.contract, event: "Approval", logs: logs, sub: sub}, nil
 }
 
 // WatchApproval is a free log subscription operation binding the contract event 0x8c5be1e5ebec7d5bd14f71427d1e84f3dd0314c0f7b2291e5b200ac8c7c3b925.
 //
 // Solidity: event Approval(address indexed tokenOwner, address indexed spender, uint256 tokens)
-func (_Erc20 *Erc20Filterer) WatchApproval(opts *bind.WatchOpts, sink chan<- *Erc20Approval, tokenOwner []common.Address, spender []common.Address) (event.Subscription, error) {
+func (_Contract *ContractFilterer) WatchApproval(opts *bind.WatchOpts, sink chan<- *ContractApproval, tokenOwner []common.Address, spender []common.Address) (event.Subscription, error) {
 
 	var tokenOwnerRule []interface{}
 	for _, tokenOwnerItem := range tokenOwner {
@@ -382,7 +382,7 @@ func (_Erc20 *Erc20Filterer) WatchApproval(opts *bind.WatchOpts, sink chan<- *Er
 		spenderRule = append(spenderRule, spenderItem)
 	}
 
-	logs, sub, err := _Erc20.contract.WatchLogs(opts, "Approval", tokenOwnerRule, spenderRule)
+	logs, sub, err := _Contract.contract.WatchLogs(opts, "Approval", tokenOwnerRule, spenderRule)
 	if err != nil {
 		return nil, err
 	}
@@ -392,8 +392,8 @@ func (_Erc20 *Erc20Filterer) WatchApproval(opts *bind.WatchOpts, sink chan<- *Er
 			select {
 			case log := <-logs:
 				// New log arrived, parse the event and forward to the user
-				event := new(Erc20Approval)
-				if err := _Erc20.contract.UnpackLog(event, "Approval", log); err != nil {
+				event := new(ContractApproval)
+				if err := _Contract.contract.UnpackLog(event, "Approval", log); err != nil {
 					return err
 				}
 				event.Raw = log
@@ -417,18 +417,18 @@ func (_Erc20 *Erc20Filterer) WatchApproval(opts *bind.WatchOpts, sink chan<- *Er
 // ParseApproval is a log parse operation binding the contract event 0x8c5be1e5ebec7d5bd14f71427d1e84f3dd0314c0f7b2291e5b200ac8c7c3b925.
 //
 // Solidity: event Approval(address indexed tokenOwner, address indexed spender, uint256 tokens)
-func (_Erc20 *Erc20Filterer) ParseApproval(log types.Log) (*Erc20Approval, error) {
-	event := new(Erc20Approval)
-	if err := _Erc20.contract.UnpackLog(event, "Approval", log); err != nil {
+func (_Contract *ContractFilterer) ParseApproval(log types.Log) (*ContractApproval, error) {
+	event := new(ContractApproval)
+	if err := _Contract.contract.UnpackLog(event, "Approval", log); err != nil {
 		return nil, err
 	}
 	event.Raw = log
 	return event, nil
 }
 
-// Erc20TransferIterator is returned from FilterTransfer and is used to iterate over the raw logs and unpacked data for Transfer events raised by the Erc20 contract.
-type Erc20TransferIterator struct {
-	Event *Erc20Transfer // Event containing the contract specifics and raw log
+// ContractTransferIterator is returned from FilterTransfer and is used to iterate over the raw logs and unpacked data for Transfer events raised by the Contract contract.
+type ContractTransferIterator struct {
+	Event *ContractTransfer // Event containing the contract specifics and raw log
 
 	contract *bind.BoundContract // Generic contract to use for unpacking event data
 	event    string              // Event name to use for unpacking event data
@@ -442,7 +442,7 @@ type Erc20TransferIterator struct {
 // Next advances the iterator to the subsequent event, returning whether there
 // are any more events found. In case of a retrieval or parsing error, false is
 // returned and Error() can be queried for the exact failure.
-func (it *Erc20TransferIterator) Next() bool {
+func (it *ContractTransferIterator) Next() bool {
 	// If the iterator failed, stop iterating
 	if it.fail != nil {
 		return false
@@ -451,7 +451,7 @@ func (it *Erc20TransferIterator) Next() bool {
 	if it.done {
 		select {
 		case log := <-it.logs:
-			it.Event = new(Erc20Transfer)
+			it.Event = new(ContractTransfer)
 			if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
 				it.fail = err
 				return false
@@ -466,7 +466,7 @@ func (it *Erc20TransferIterator) Next() bool {
 	// Iterator still in progress, wait for either a data or an error event
 	select {
 	case log := <-it.logs:
-		it.Event = new(Erc20Transfer)
+		it.Event = new(ContractTransfer)
 		if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
 			it.fail = err
 			return false
@@ -482,19 +482,19 @@ func (it *Erc20TransferIterator) Next() bool {
 }
 
 // Error returns any retrieval or parsing error occurred during filtering.
-func (it *Erc20TransferIterator) Error() error {
+func (it *ContractTransferIterator) Error() error {
 	return it.fail
 }
 
 // Close terminates the iteration process, releasing any pending underlying
 // resources.
-func (it *Erc20TransferIterator) Close() error {
+func (it *ContractTransferIterator) Close() error {
 	it.sub.Unsubscribe()
 	return nil
 }
 
-// Erc20Transfer represents a Transfer event raised by the Erc20 contract.
-type Erc20Transfer struct {
+// ContractTransfer represents a Transfer event raised by the Contract contract.
+type ContractTransfer struct {
 	From   common.Address
 	To     common.Address
 	Tokens *big.Int
@@ -504,7 +504,7 @@ type Erc20Transfer struct {
 // FilterTransfer is a free log retrieval operation binding the contract event 0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef.
 //
 // Solidity: event Transfer(address indexed from, address indexed to, uint256 tokens)
-func (_Erc20 *Erc20Filterer) FilterTransfer(opts *bind.FilterOpts, from []common.Address, to []common.Address) (*Erc20TransferIterator, error) {
+func (_Contract *ContractFilterer) FilterTransfer(opts *bind.FilterOpts, from []common.Address, to []common.Address) (*ContractTransferIterator, error) {
 
 	var fromRule []interface{}
 	for _, fromItem := range from {
@@ -515,17 +515,17 @@ func (_Erc20 *Erc20Filterer) FilterTransfer(opts *bind.FilterOpts, from []common
 		toRule = append(toRule, toItem)
 	}
 
-	logs, sub, err := _Erc20.contract.FilterLogs(opts, "Transfer", fromRule, toRule)
+	logs, sub, err := _Contract.contract.FilterLogs(opts, "Transfer", fromRule, toRule)
 	if err != nil {
 		return nil, err
 	}
-	return &Erc20TransferIterator{contract: _Erc20.contract, event: "Transfer", logs: logs, sub: sub}, nil
+	return &ContractTransferIterator{contract: _Contract.contract, event: "Transfer", logs: logs, sub: sub}, nil
 }
 
 // WatchTransfer is a free log subscription operation binding the contract event 0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef.
 //
 // Solidity: event Transfer(address indexed from, address indexed to, uint256 tokens)
-func (_Erc20 *Erc20Filterer) WatchTransfer(opts *bind.WatchOpts, sink chan<- *Erc20Transfer, from []common.Address, to []common.Address) (event.Subscription, error) {
+func (_Contract *ContractFilterer) WatchTransfer(opts *bind.WatchOpts, sink chan<- *ContractTransfer, from []common.Address, to []common.Address) (event.Subscription, error) {
 
 	var fromRule []interface{}
 	for _, fromItem := range from {
@@ -536,7 +536,7 @@ func (_Erc20 *Erc20Filterer) WatchTransfer(opts *bind.WatchOpts, sink chan<- *Er
 		toRule = append(toRule, toItem)
 	}
 
-	logs, sub, err := _Erc20.contract.WatchLogs(opts, "Transfer", fromRule, toRule)
+	logs, sub, err := _Contract.contract.WatchLogs(opts, "Transfer", fromRule, toRule)
 	if err != nil {
 		return nil, err
 	}
@@ -546,8 +546,8 @@ func (_Erc20 *Erc20Filterer) WatchTransfer(opts *bind.WatchOpts, sink chan<- *Er
 			select {
 			case log := <-logs:
 				// New log arrived, parse the event and forward to the user
-				event := new(Erc20Transfer)
-				if err := _Erc20.contract.UnpackLog(event, "Transfer", log); err != nil {
+				event := new(ContractTransfer)
+				if err := _Contract.contract.UnpackLog(event, "Transfer", log); err != nil {
 					return err
 				}
 				event.Raw = log
@@ -571,9 +571,9 @@ func (_Erc20 *Erc20Filterer) WatchTransfer(opts *bind.WatchOpts, sink chan<- *Er
 // ParseTransfer is a log parse operation binding the contract event 0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef.
 //
 // Solidity: event Transfer(address indexed from, address indexed to, uint256 tokens)
-func (_Erc20 *Erc20Filterer) ParseTransfer(log types.Log) (*Erc20Transfer, error) {
-	event := new(Erc20Transfer)
-	if err := _Erc20.contract.UnpackLog(event, "Transfer", log); err != nil {
+func (_Contract *ContractFilterer) ParseTransfer(log types.Log) (*ContractTransfer, error) {
+	event := new(ContractTransfer)
+	if err := _Contract.contract.UnpackLog(event, "Transfer", log); err != nil {
 		return nil, err
 	}
 	event.Raw = log
