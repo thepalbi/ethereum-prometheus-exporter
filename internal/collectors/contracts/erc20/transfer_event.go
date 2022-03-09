@@ -2,13 +2,11 @@ package erc20
 
 import (
 	"context"
-	"log"
 	"math"
 	"math/big"
 	"sync"
 
 	"github.com/ethereum/go-ethereum/accounts/abi/bind"
-	"github.com/ethereum/go-ethereum/common"
 	"github.com/pkg/errors"
 	"github.com/prometheus/client_golang/prometheus"
 	"github.com/thepalbi/ethereum-prometheus-exporter/internal/collectors/constants"
@@ -21,20 +19,9 @@ type TransferEvent struct {
 }
 
 func NewERC20TransferEvent(client ContractClient, contractAddresses []config.ERC20Target, nowBlockNumber uint64, blockchain string) (*TransferEvent, error) {
-	clients := map[*contractInfo]*token.TokenFilterer{}
-	for _, contractAddress := range contractAddresses {
-		address := common.HexToAddress(contractAddress.ContractAddr)
-		filterer, err := token.NewTokenFilterer(address, client)
-		if err != nil {
-			return nil, errors.Wrap(err, "failed to create ERC20 transfer evt collector")
-		}
-		info, err := getContractInfo(address, client, contractAddress.Name)
-		if err != nil {
-			return nil, err
-		}
-
-		log.Printf("Got info for %s, symbol %s, with name %s\n", info.Address, info.Symbol, info.Name)
-		clients[info] = filterer
+	clients, err := getContractClients(client, contractAddresses)
+	if err != nil {
+		return nil, err
 	}
 
 	return &TransferEvent{
@@ -91,7 +78,6 @@ func (col *TransferEvent) doCollect(ch chan<- prometheus.Metric, currentBlockNum
 		count += 1
 		sum += value / math.Pow10(int(info.Decimals))
 	}
-
 }
 
 func (col *TransferEvent) Collect(ch chan<- prometheus.Metric) {

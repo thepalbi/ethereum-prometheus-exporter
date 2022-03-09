@@ -2,12 +2,14 @@ package erc20
 
 import (
 	"context"
+	"log"
 	"sync"
 
 	"github.com/ethereum/go-ethereum/accounts/abi/bind"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/pkg/errors"
 	"github.com/prometheus/client_golang/prometheus"
+	"github.com/thepalbi/ethereum-prometheus-exporter/internal/config"
 	"github.com/thepalbi/ethereum-prometheus-exporter/token"
 )
 
@@ -55,4 +57,24 @@ func getContractInfo(contractAddr common.Address, contractClient bind.ContractCa
 		Decimals: decimals,
 		Name:     name,
 	}, nil
+}
+
+func getContractClients(client ContractClient, contractAddresses []config.ERC20Target) (map[*contractInfo]*token.TokenFilterer, error) {
+	clients := map[*contractInfo]*token.TokenFilterer{}
+	for _, contractAddress := range contractAddresses {
+		address := common.HexToAddress(contractAddress.ContractAddr)
+		filterer, err := token.NewTokenFilterer(address, client)
+		if err != nil {
+			return nil, errors.Wrap(err, "failed to create ERC20 event collector")
+		}
+		info, err := getContractInfo(address, client, contractAddress.Name)
+		if err != nil {
+			return nil, err
+		}
+
+		log.Printf("Got info for %s, symbol %s\n", info.Address, info.Symbol)
+		clients[info] = filterer
+	}
+
+	return clients, nil
 }

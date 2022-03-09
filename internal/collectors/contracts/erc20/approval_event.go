@@ -2,10 +2,6 @@ package erc20
 
 import (
 	"context"
-	"github.com/ethereum/go-ethereum/common"
-	"github.com/thepalbi/ethereum-prometheus-exporter/internal/collectors/constants"
-	"github.com/thepalbi/ethereum-prometheus-exporter/internal/config"
-	"log"
 	"math"
 	"math/big"
 	"sync"
@@ -13,6 +9,8 @@ import (
 	"github.com/ethereum/go-ethereum/accounts/abi/bind"
 	"github.com/pkg/errors"
 	"github.com/prometheus/client_golang/prometheus"
+	"github.com/thepalbi/ethereum-prometheus-exporter/internal/collectors/constants"
+	"github.com/thepalbi/ethereum-prometheus-exporter/internal/config"
 	"github.com/thepalbi/ethereum-prometheus-exporter/token"
 )
 
@@ -21,20 +19,9 @@ type ApprovalEvent struct {
 }
 
 func NewERC20ApprovalEvent(client ContractClient, contractAddresses []config.ERC20Target, nowBlockNumber uint64, blockchain string) (*ApprovalEvent, error) {
-	clients := map[*contractInfo]*token.TokenFilterer{}
-	for _, contractAddress := range contractAddresses {
-		address := common.HexToAddress(contractAddress.ContractAddr)
-		filterer, err := token.NewTokenFilterer(address, client)
-		if err != nil {
-			return nil, errors.Wrap(err, "failed to create ERC20 approval evt collector")
-		}
-		info, err := getContractInfo(address, client, contractAddress.Name)
-		if err != nil {
-			return nil, err
-		}
-
-		log.Printf("Got info for %s, symbol %s\n", info.Address, info.Symbol)
-		clients[info] = filterer
+	clients, err := getContractClients(client, contractAddresses)
+	if err != nil {
+		return nil, err
 	}
 
 	return &ApprovalEvent{
@@ -43,7 +30,7 @@ func NewERC20ApprovalEvent(client ContractClient, contractAddresses []config.ERC
 			desc: prometheus.NewDesc(
 				"erc20_approval_event",
 				"ERC20 Approval events count",
-				[]string{"contract", "symbol", constants.NameLabel},
+				[]string{"contract", "symbol"},
 				map[string]string{
 					constants.BlockchainNameLabel: blockchain,
 				},
