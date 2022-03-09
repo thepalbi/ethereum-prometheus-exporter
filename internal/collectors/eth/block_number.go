@@ -4,6 +4,7 @@ import (
 	"github.com/ethereum/go-ethereum/common/hexutil"
 	"github.com/ethereum/go-ethereum/rpc"
 	"github.com/prometheus/client_golang/prometheus"
+	"github.com/thepalbi/ethereum-prometheus-exporter/internal/collectors/constants"
 )
 
 type EthBlockNumber struct {
@@ -18,7 +19,7 @@ func NewEthBlockNumber(rpc *rpc.Client, blockchain string) *EthBlockNumber {
 			"eth_block_number",
 			"number of the most recent block",
 			nil,
-			map[string]string{"blockchain": blockchain},
+			map[string]string{constants.BlockchainNameLabel: blockchain},
 		),
 	}
 }

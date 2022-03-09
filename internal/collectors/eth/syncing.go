@@ -3,10 +3,10 @@ package eth
 import (
 	"encoding/json"
 	"errors"
-
 	"github.com/ethereum/go-ethereum/common/hexutil"
 	"github.com/ethereum/go-ethereum/rpc"
 	"github.com/prometheus/client_golang/prometheus"
+	"github.com/thepalbi/ethereum-prometheus-exporter/internal/collectors/constants"
 )
 
 type EthSyncing struct {
@@ -29,19 +29,19 @@ func NewEthSyncing(rpc *rpc.Client, blockchain string) *EthSyncing {
 			"eth_sync_starting",
 			"block number at which current import started",
 			nil,
-			map[string]string{"blockchain": blockchain},
+			map[string]string{constants.BlockchainNameLabel: blockchain},
 		),
 		currentDesc: prometheus.NewDesc(
 			"eth_sync_current",
 			"number of most recent block",
 			nil,
-			map[string]string{"blockchain": blockchain},
+			map[string]string{constants.BlockchainNameLabel: blockchain},
 		),
 		highestDesc: prometheus.NewDesc(
 			"eth_sync_highest",
 			"estimated number of highest block",
 			nil,
-			map[string]string{"blockchain": blockchain},
+			map[string]string{constants.BlockchainNameLabel: blockchain},
 		),
 	}
 }

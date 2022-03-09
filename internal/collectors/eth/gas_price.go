@@ -1,6 +1,7 @@
 package eth
 
 import (
+	"github.com/thepalbi/ethereum-prometheus-exporter/internal/collectors/constants"
 	"math/big"
 
 	"github.com/ethereum/go-ethereum/common/hexutil"
@@ -20,7 +21,7 @@ func NewEthGasPrice(rpc *rpc.Client, blockchain string) *EthGasPrice {
 			"eth_gas_price",
 			"current gas price in wei",
 			nil,
-			map[string]string{"blockchain": blockchain},
+			map[string]string{constants.BlockchainNameLabel: blockchain},
 		),
 	}
 }

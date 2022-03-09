@@ -1,6 +1,7 @@
 .env
 .idea/
 events_test
+ethereum_exporter
 build/
 production/exporter/*.yaml
 !production/exporter/sample.yaml
