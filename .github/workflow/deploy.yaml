@@ -1,0 +1,19 @@
+name: Deploy to prod
+on:
+  push:
+    branches:
+      - 'master'
+jobs:
+  deploy-to-prod:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install SSH key
+        uses: shimataro/ssh-key-action@v2
+        with:
+          key: ${{ secrets.AWS_SSH_KEY }}
+          name: id_rsa
+          known_hosts: ${{ secrets.SSH_HOST }}
+          if_key_exists: fail
+      - echo: Deploying {{ env.GITHUB_SHA }} to production
+      - run: ssh {{ secrets.SSH_USER }}@{{ secrects.SSH_HOST }} "cd ~/app && git pull && docker-compose restart"
+      - echo: Deployed!
