@@ -1,6 +1,6 @@
 general:
   eth_provider_url:
-  server_url: localhost:9368
+  server_url: :9368
   start_block_number: 0
 targets:
   erc20:
