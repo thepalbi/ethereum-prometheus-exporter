@@ -4,6 +4,7 @@ import (
 	"github.com/ethereum/go-ethereum/common/hexutil"
 	"github.com/ethereum/go-ethereum/rpc"
 	"github.com/prometheus/client_golang/prometheus"
+	"github.com/thepalbi/ethereum-prometheus-exporter/internal/collectors/constants"
 )
 
 type EthHashrate struct {
@@ -18,7 +19,7 @@ func NewEthHashrate(rpc *rpc.Client, blockchain string) *EthHashrate {
 			"eth_hashrate",
 			"hashes per second that this node is mining with",
 			nil,
-			map[string]string{"blockchain": blockchain},
+			map[string]string{constants.BlockchainNameLabel: blockchain},
 		),
 	}
 }

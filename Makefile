@@ -8,7 +8,7 @@ transpileABIToGo:
 
 tokenInterface: generateABI transpileABIToGo
 
-docker-compose: tokenInterface
+docker-compose:
 	docker-compose build
 
 mixin: lint-mixin

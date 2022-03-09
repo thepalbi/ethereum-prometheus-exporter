@@ -4,6 +4,7 @@ import (
 	"github.com/ethereum/go-ethereum/common/hexutil"
 	"github.com/ethereum/go-ethereum/rpc"
 	"github.com/prometheus/client_golang/prometheus"
+	"github.com/thepalbi/ethereum-prometheus-exporter/internal/collectors/constants"
 )
 
 type NetPeerCount struct {
@@ -18,7 +19,7 @@ func NewNetPeerCount(rpc *rpc.Client, blockchain string) *NetPeerCount {
 			"net_peers",
 			"number of peers currently connected to the client",
 			nil,
-			map[string]string{"blockchain": blockchain},
+			map[string]string{constants.BlockchainNameLabel: blockchain},
 		),
 	}
 }

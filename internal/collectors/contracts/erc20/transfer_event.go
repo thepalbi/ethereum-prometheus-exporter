@@ -6,6 +6,7 @@ import (
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/pkg/errors"
 	"github.com/prometheus/client_golang/prometheus"
+	"github.com/thepalbi/ethereum-prometheus-exporter/internal/collectors/constants"
 	"github.com/thepalbi/ethereum-prometheus-exporter/internal/config"
 	"github.com/thepalbi/ethereum-prometheus-exporter/token"
 	"log"
@@ -60,7 +61,7 @@ func getContractInfo(contractAddr common.Address, contractClient bind.ContractCa
 	}, nil
 }
 
-func NewERC20TransferEvent(client ContractClient, contractAddresses []config.ERC20Target, nowBlockNumber uint64) (*ERC20TransferEvent, error) {
+func NewERC20TransferEvent(client ContractClient, contractAddresses []config.ERC20Target, nowBlockNumber uint64, blockchain string) (*ERC20TransferEvent, error) {
 	clients := map[*contractInfo]*token.TokenFilterer{}
 	for _, contractAddress := range contractAddresses {
 		address := common.HexToAddress(contractAddress.ContractAddr)
@@ -82,8 +83,10 @@ func NewERC20TransferEvent(client ContractClient, contractAddresses []config.ERC
 		desc: prometheus.NewDesc(
 			"erc20_transfer_event",
 			"ERC20 Transfer events count",
-			[]string{"contract", "symbol", "name"},
-			nil,
+			[]string{"contract", "symbol", constants.NameLabel},
+			map[string]string{
+				constants.BlockchainNameLabel: blockchain,
+			},
 		),
 		lastQueriedBlock: nowBlockNumber,
 		bnGetter:         client,

@@ -4,6 +4,7 @@ import (
 	"github.com/ethereum/go-ethereum/common/hexutil"
 	"github.com/ethereum/go-ethereum/rpc"
 	"github.com/prometheus/client_golang/prometheus"
+	"github.com/thepalbi/ethereum-prometheus-exporter/internal/collectors/constants"
 )
 
 type EthBlockTimestamp struct {
@@ -22,7 +23,7 @@ func NewEthBlockTimestamp(rpc *rpc.Client, blockchain string) *EthBlockTimestamp
 			"eth_block_timestamp",
 			"timestamp of the most recent block",
 			nil,
-			map[string]string{"blockchain": blockchain},
+			map[string]string{constants.BlockchainNameLabel: blockchain},
 		),
 	}
 }

@@ -4,6 +4,7 @@ import (
 	"github.com/ethereum/go-ethereum/common/hexutil"
 	"github.com/ethereum/go-ethereum/rpc"
 	"github.com/prometheus/client_golang/prometheus"
+	"github.com/thepalbi/ethereum-prometheus-exporter/internal/collectors/constants"
 )
 
 type EthEarliestBlockTransactions struct {
@@ -18,7 +19,7 @@ func NewEthEarliestBlockTransactions(rpc *rpc.Client, blockchain string) *EthEar
 			"eth_earliest_block_transactions",
 			"the number of transactions in an earliest block",
 			nil,
-			map[string]string{"blockchain": blockchain},
+			map[string]string{constants.BlockchainNameLabel: blockchain},
 		),
 	}
 }

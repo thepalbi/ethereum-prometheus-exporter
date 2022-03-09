@@ -4,6 +4,7 @@ import (
 	"github.com/ethereum/go-ethereum/common/hexutil"
 	"github.com/ethereum/go-ethereum/rpc"
 	"github.com/prometheus/client_golang/prometheus"
+	"github.com/thepalbi/ethereum-prometheus-exporter/internal/collectors/constants"
 )
 
 type EthPendingBlockTransactions struct {
@@ -18,7 +19,7 @@ func NewEthPendingBlockTransactions(rpc *rpc.Client, blockchain string) *EthPend
 			"eth_pending_block_transactions",
 			"the number of transactions in pending block",
 			nil,
-			map[string]string{"blockchain": blockchain},
+			map[string]string{constants.BlockchainNameLabel: blockchain},
 		),
 	}
 }

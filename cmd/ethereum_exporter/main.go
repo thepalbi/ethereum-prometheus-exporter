@@ -76,13 +76,13 @@ func main() {
 	// ERC-20 Targets
 	log.Printf("Detected %d ERC-20 smart contract(s) to monitor\n", len(cfg.Target.ERC20))
 
-	coll, err := erc20.NewERC20TransferEvent(client, cfg.Target.ERC20, cfg.General.StartBlockNumber)
+	coll, err := erc20.NewERC20TransferEvent(client, cfg.Target.ERC20, cfg.General.StartBlockNumber, cfg.General.EthBlockchainName)
 	if err != nil {
 		log.Fatalf("failed to create erc20 transfer collector: %v", err)
 	}
 
 	// Wallet  Target
-	collectorGetAddressBalance := eth.NewEthGetBalance(rpc, cfg.Target.Wallet)
+	collectorGetAddressBalance := eth.NewEthGetBalance(rpc, cfg.Target.Wallet, cfg.General.EthBlockchainName)
 
 	registry := prometheus.NewPedanticRegistry()
 	registry.MustRegister(
