@@ -31,7 +31,7 @@ type contractInfo struct {
 }
 
 type Event struct {
-	contractClients  map[*contractInfo]*erc20.TokenFilterer
+	contractClients  map[*contractInfo]*erc20.Erc20Filterer
 	desc             *prometheus.Desc
 	collectMutex     sync.Mutex
 	lastQueriedBlock uint64
@@ -39,7 +39,7 @@ type Event struct {
 }
 
 func getContractInfo(contractAddr common.Address, contractClient bind.ContractCaller, name string) (*contractInfo, error) {
-	contractCaller, err := erc20.NewTokenCaller(contractAddr, contractClient)
+	contractCaller, err := erc20.NewErc20Caller(contractAddr, contractClient)
 	if err != nil {
 		return nil, errors.Wrapf(err, "failed to get contract info for %s", contractAddr.Hex())
 	}
@@ -59,11 +59,11 @@ func getContractInfo(contractAddr common.Address, contractClient bind.ContractCa
 	}, nil
 }
 
-func getContractClients(client ContractClient, contractAddresses []config.ERC20Target) (map[*contractInfo]*erc20.TokenFilterer, error) {
-	clients := map[*contractInfo]*erc20.TokenFilterer{}
+func getContractClients(client ContractClient, contractAddresses []config.ERC20Target) (map[*contractInfo]*erc20.Erc20Filterer, error) {
+	clients := map[*contractInfo]*erc20.Erc20Filterer{}
 	for _, contractAddress := range contractAddresses {
 		address := common.HexToAddress(contractAddress.ContractAddr)
-		filterer, err := erc20.NewTokenFilterer(address, client)
+		filterer, err := erc20.NewErc20Filterer(address, client)
 		if err != nil {
 			return nil, errors.Wrap(err, "failed to create ERC20 event collector")
 		}

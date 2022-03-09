@@ -45,7 +45,7 @@ func (col *ApprovalEvent) Describe(ch chan<- *prometheus.Desc) {
 	ch <- col.desc
 }
 
-func (col *ApprovalEvent) doCollect(ch chan<- prometheus.Metric, currentBlockNumber uint64, info *contractInfo, client *erc20.TokenFilterer) {
+func (col *ApprovalEvent) doCollect(ch chan<- prometheus.Metric, currentBlockNumber uint64, info *contractInfo, client *erc20.Erc20Filterer) {
 	it, err := client.FilterApproval(&bind.FilterOpts{
 		Context: context.Background(),
 		Start:   col.lastQueriedBlock,
@@ -96,7 +96,7 @@ func (col *ApprovalEvent) Collect(ch chan<- prometheus.Metric) {
 	for contrInfo, client := range col.contractClients {
 		wg.Add(1)
 
-		go func(contrInfo *contractInfo, client *erc20.TokenFilterer) {
+		go func(contrInfo *contractInfo, client *erc20.Erc20Filterer) {
 			defer wg.Done()
 			col.doCollect(ch, currentBlockNumber, contrInfo, client)
 		}(contrInfo, client)
