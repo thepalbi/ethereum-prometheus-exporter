@@ -17,7 +17,7 @@ func TestEthLatestBlockTransactionsCollectError(t *testing.T) {
 		t.Fatalf("rpc connection error: %#v", err)
 	}
 
-	collector := NewEthLatestBlockTransactions(rpc, blockchainName)
+	collector := NewEthLatestBlockTransactions(rpc, mockBlockchainName)
 	ch := make(chan prometheus.Metric, 1)
 
 	collector.Collect(ch)
@@ -53,7 +53,7 @@ func TestEthLatestBlockTransactionsCollect(t *testing.T) {
 		t.Fatalf("rpc connection error: %#v", err)
 	}
 
-	collector := NewEthLatestBlockTransactions(rpc, blockchainName)
+	collector := NewEthLatestBlockTransactions(rpc, mockBlockchainName)
 	ch := make(chan prometheus.Metric, 1)
 
 	collector.Collect(ch)

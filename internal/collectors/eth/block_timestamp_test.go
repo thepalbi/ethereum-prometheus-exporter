@@ -17,7 +17,7 @@ func TestEthBlockTimestampCollectError(t *testing.T) {
 		t.Fatalf("rpc connection error: %#v", err)
 	}
 
-	collector := NewEthBlockTimestamp(rpc, blockchainName)
+	collector := NewEthBlockTimestamp(rpc, mockBlockchainName)
 	ch := make(chan prometheus.Metric, 1)
 
 	collector.Collect(ch)
@@ -54,7 +54,7 @@ func TestEthBlockTimestampCollect(t *testing.T) {
 		t.Fatalf("rpc connection error: %#v", err)
 	}
 
-	collector := NewEthBlockTimestamp(rpc, blockchainName)
+	collector := NewEthBlockTimestamp(rpc, mockBlockchainName)
 	ch := make(chan prometheus.Metric, 1)
 
 	collector.Collect(ch)

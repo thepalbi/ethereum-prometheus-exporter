@@ -26,7 +26,7 @@ func TestEthGetBalance(t *testing.T) {
 		t.Fatalf("rpc connection error: %#v", err)
 	}
 
-	collector := NewEthGetBalance(rpc, config.WalletTarget{Addr: mockWalletAddress, Name: mockWalletName})
+	collector := NewEthGetBalance(rpc, config.WalletTarget{Addr: mockWalletAddress, Name: mockWalletName}, mockBlockchainName)
 	ch := make(chan prometheus.Metric, 1)
 
 	collector.Collect(ch)
@@ -44,8 +44,8 @@ func TestEthGetBalance(t *testing.T) {
 		if got := len(metric.Label); got != 1 {
 			t.Fatalf("expected 1 label, got %d", got)
 		}
-		if got := *metric.Gauge.Value; got != expectedValue {
-			t.Fatalf("got %v, want %d", got, expectedValue)
+		if got := *metric.Gauge.Value; got != mockExpectedValue {
+			t.Fatalf("got %v, want %d", got, mockExpectedValue)
 		}
 	}
 }
