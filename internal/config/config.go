@@ -10,6 +10,11 @@ type ERC20Target struct {
 	ContractAddr string `yaml:"contract"`
 }
 
+type ERC721Target struct {
+	Name         string `yaml:"name"`
+	ContractAddr string `yaml:"contract"`
+}
+
 type WalletTarget struct {
 	Addr string `yaml:"address"`
 	Name string `yaml:"name"`
@@ -23,8 +28,9 @@ type Config struct {
 		StartBlockNumber  uint64 `yaml:"start_block_number"`
 	} `yaml:"general"`
 	Target struct {
-		ERC20  []ERC20Target `yaml:"erc20"`
-		Wallet WalletTarget  `yaml:"wallet"`
+		ERC20  []ERC20Target  `yaml:"erc20"`
+		ERC721 []ERC721Target `yaml:"erc721"`
+		Wallet WalletTarget   `yaml:"wallet"`
 	} `yaml:"targets"`
 }
 

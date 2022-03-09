@@ -20,6 +20,10 @@ func TestParseConfigFromFileIsSuccessful(t *testing.T) {
 	assert.Equal(t, "0x123123", config.Target.ERC20[0].ContractAddr)
 	assert.Equal(t, "usdt falopa 2", config.Target.ERC20[1].Name)
 	assert.Equal(t, "0x123124", config.Target.ERC20[1].ContractAddr)
+	// Targets - ERC-721
+	assert.Len(t, config.Target.ERC721, 1)
+	assert.Equal(t, "alpaca", config.Target.ERC721[0].Name)
+	assert.Equal(t, "0x112", config.Target.ERC721[0].ContractAddr)
 	// Targets - Wallet
 	assert.Equal(t, "0x123", config.Target.Wallet.Addr)
 	assert.Equal(t, "wallet 1", config.Target.Wallet.Name)
