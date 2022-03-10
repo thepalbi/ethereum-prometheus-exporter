@@ -15,10 +15,10 @@ jobs:
           if_key_exists: fail
       - name: Build latest docker containers
         run: |
-          echo Building {{ env.GITHUB_SHA }} in production
-          ssh {{ secrets.SSH_USER }}@{{ secrets.SSH_HOST }} "cd ~/app && git pull && docker-compose build"
+          echo Building ${{ env.GITHUB_SHA }} in production
+          ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "cd ~/app && git pull && docker-compose build"
       - name: Re-start docker containers
         run: |
-          echo Deploying {{ env.GITHUB_SHA }} to production
-          ssh {{ secrets.SSH_USER }}@{{ secrets.SSH_HOST }} "cd ~/app && docker-compose down && docker-compose up -d"
+          echo Deploying ${{ env.GITHUB_SHA }} to production
+          ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "cd ~/app && docker-compose down && docker-compose up -d"
           echo Deployed!
