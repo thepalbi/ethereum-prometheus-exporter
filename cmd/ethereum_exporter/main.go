@@ -86,8 +86,8 @@ func main() {
 		log.Fatalf("failed to create erc20 approval collector: %v", err)
 	}
 
-	// Wallet  Target
-	collectorGetAddressBalance := eth.NewEthGetBalance(rpc, cfg.Target.Wallet, cfg.General.EthBlockchainName)
+	// Wallets  Target
+	collectorGetAddressBalance := eth.NewEthGetBalance(rpc, cfg.Target.Wallets, cfg.General.EthBlockchainName)
 
 	registry := prometheus.NewPedanticRegistry()
 	registry.MustRegister(

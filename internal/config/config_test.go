@@ -20,12 +20,12 @@ func TestParseConfigFromFileIsSuccessful(t *testing.T) {
 	assert.Equal(t, "0x123123", config.Target.ERC20[0].ContractAddr)
 	assert.Equal(t, "usdt falopa 2", config.Target.ERC20[1].Name)
 	assert.Equal(t, "0x123124", config.Target.ERC20[1].ContractAddr)
-	// Targets - Wallet
-	assert.Equal(t, "0x123", config.Target.Wallet[0].Addr)
-	assert.Equal(t, "wallet 1", config.Target.Wallet[0].Name)
-	// Targets - Wallet
-	assert.Equal(t, "0x456", config.Target.Wallet[1].Addr)
-	assert.Equal(t, "wallet 2", config.Target.Wallet[1].Name)
+	// Targets - Wallets
+	assert.Equal(t, "0x123", config.Target.Wallets[0].Addr)
+	assert.Equal(t, "wallet 1", config.Target.Wallets[0].Name)
+	// Targets - Wallets
+	assert.Equal(t, "0x456", config.Target.Wallets[1].Addr)
+	assert.Equal(t, "wallet 2", config.Target.Wallets[1].Name)
 }
 
 func TestParseConfigFromFileFailsWithNonExistentFile(t *testing.T) {

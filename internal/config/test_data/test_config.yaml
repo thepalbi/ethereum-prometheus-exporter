@@ -9,7 +9,7 @@ targets:
     contract: "0x123123"
   - name: "usdt falopa 2"
     contract: "0x123124"
-  wallet:
+  wallets:
     - name: "wallet 1"
       address: "0x123"
     - name: "wallet 2"

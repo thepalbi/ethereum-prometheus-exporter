@@ -23,8 +23,8 @@ type Config struct {
 		StartBlockNumber  uint64 `yaml:"start_block_number"`
 	} `yaml:"general"`
 	Target struct {
-		ERC20  []ERC20Target  `yaml:"erc20"`
-		Wallet []WalletTarget `yaml:"wallet"`
+		ERC20   []ERC20Target  `yaml:"erc20"`
+		Wallets []WalletTarget `yaml:"wallets"`
 	} `yaml:"targets"`
 }
 
