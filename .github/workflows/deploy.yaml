@@ -11,7 +11,7 @@ jobs:
         with:
           key: ${{ secrets.AWS_SSH_KEY }}
           name: id_rsa
-          known_hosts: ${{ secrets.SSH_HOST }}
+          known_hosts: ${{ secrets.AWS_SSH_KNOWN_HOST }}
           if_key_exists: fail
       - name: Build latest docker containers
         run: |
