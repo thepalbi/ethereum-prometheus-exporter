@@ -6,6 +6,7 @@ import (
 	"net/http"
 	"net/http/httptest"
 	"testing"
+	"time"
 
 	"github.com/ethereum/go-ethereum/rpc"
 	"github.com/prometheus/client_golang/prometheus"
@@ -26,10 +27,14 @@ func TestEthGetBalance(t *testing.T) {
 		t.Fatalf("rpc connection error: %#v", err)
 	}
 
-	collector := NewEthGetBalance(rpc, config.WalletTarget{Addr: mockWalletAddress, Name: mockWalletName}, mockBlockchainName)
+	collector := NewEthGetBalance(rpc, []config.WalletTarget{{Addr: mockWalletAddress, Name: mockWalletName}}, mockBlockchainName)
 	ch := make(chan prometheus.Metric, 1)
 
 	collector.Collect(ch)
+
+	// only to wait for goroutine inside Collect method
+	time.Sleep(2 * time.Second)
+
 	close(ch)
 
 	if got := len(ch); got != 1 {
@@ -41,8 +46,8 @@ func TestEthGetBalance(t *testing.T) {
 		if err := result.Write(&metric); err != nil {
 			t.Fatalf("expected metric, got %#v", err)
 		}
-		if got := len(metric.Label); got != 1 {
-			t.Fatalf("expected 1 label, got %d", got)
+		if got := len(metric.Label); got != 2 {
+			t.Fatalf("expected 2 label2, got %d", got)
 		}
 		if got := *metric.Gauge.Value; got != mockExpectedValue {
 			t.Fatalf("got %v, want %d", got, mockExpectedValue)
