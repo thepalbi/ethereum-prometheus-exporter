@@ -15,7 +15,7 @@ jobs:
           if_key_exists: fail
       - name: Build latest docker containers
         run: |
-          Building {{ env.GITHUB_SHA }} in production
+          echo Building {{ env.GITHUB_SHA }} in production
           ssh {{ secrets.SSH_USER }}@{{ secrets.SSH_HOST }} "cd ~/app && git pull && docker-compose build"
       - name: Re-start docker containers
         run: |
