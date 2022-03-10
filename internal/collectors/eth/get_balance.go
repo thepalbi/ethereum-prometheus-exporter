@@ -1,6 +1,8 @@
 package eth
 
 import (
+	"math/big"
+
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/common/hexutil"
 	"github.com/ethereum/go-ethereum/rpc"
@@ -10,22 +12,30 @@ import (
 	"github.com/thepalbi/ethereum-prometheus-exporter/internal/config"
 )
 
-type EthGetBalance struct {
-	rpc     *rpc.Client
-	address common.Address
-	desc    *prometheus.Desc
+type WalletAddress struct {
+	Name    string
+	Address common.Address
 }
 
-func NewEthGetBalance(rpc *rpc.Client, wallet config.WalletTarget, blockchain string) *EthGetBalance {
+type EthGetBalance struct {
+	rpc       *rpc.Client
+	addresses []WalletAddress
+	desc      *prometheus.Desc
+}
+
+func NewEthGetBalance(rpc *rpc.Client, wallets []config.WalletTarget, blockchain string) *EthGetBalance {
+	var walletAddresses []WalletAddress
+	for _, w := range wallets {
+		walletAddresses = append(walletAddresses, WalletAddress{w.Name, common.HexToAddress(w.Addr)})
+	}
 	return &EthGetBalance{
-		rpc:     rpc,
-		address: common.HexToAddress(wallet.Addr),
+		rpc:       rpc,
+		addresses: walletAddresses,
 		desc: prometheus.NewDesc(
 			"eth_get_balance",
 			"get balance",
-			nil,
+			[]string{constants.NameLabel},
 			map[string]string{
-				constants.NameLabel:           wallet.Name,
 				constants.BlockchainNameLabel: blockchain,
 			},
 		),
@@ -37,13 +47,16 @@ func (collector *EthGetBalance) Describe(ch chan<- *prometheus.Desc) {
 }
 
 func (collector *EthGetBalance) Collect(ch chan<- prometheus.Metric) {
-	var result hexutil.Uint64
-	if err := collector.rpc.Call(&result, "eth_getBalance", collector.address, "latest"); err != nil {
-		wErr := errors.Wrap(err, "failed to get Balance")
-		ch <- prometheus.NewInvalidMetric(collector.desc, wErr)
-		return
+	for _, add := range collector.addresses {
+		go func(add WalletAddress) {
+			var result hexutil.Big
+			if err := collector.rpc.Call(&result, "eth_getBalance", add.Address, "latest"); err != nil {
+				wErr := errors.Wrap(err, "failed to get Balance")
+				ch <- prometheus.NewInvalidMetric(collector.desc, wErr)
+				return
+			}
+			balance, _ := new(big.Float).SetInt(result.ToInt()).Float64()
+			ch <- prometheus.MustNewConstMetric(collector.desc, prometheus.GaugeValue, balance, add.Name)
+		}(add)
 	}
-
-	i := float64(result)
-	ch <- prometheus.MustNewConstMetric(collector.desc, prometheus.GaugeValue, i)
 }
