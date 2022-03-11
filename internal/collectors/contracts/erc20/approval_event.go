@@ -30,7 +30,7 @@ func NewERC20ApprovalEvent(client ContractClient, contractAddresses []config.ERC
 			desc: prometheus.NewDesc(
 				"erc20_approval_event",
 				"ERC20 Approval events count",
-				[]string{"contract", "symbol"},
+				[]string{"contract", "symbol", constants.NameLabel},
 				map[string]string{
 					constants.BlockchainNameLabel: blockchain,
 				},
@@ -65,7 +65,7 @@ func (col *ApprovalEvent) doCollect(ch chan<- prometheus.Metric, currentBlockNum
 		eventsLeft := it.Next()
 		if !eventsLeft && it.Error() == nil {
 			// Finished reading events, advance lastQueriedBlock and publish histogram data
-			ch <- prometheus.MustNewConstHistogram(col.desc, count, sum, nil, info.Address, info.Symbol)
+			ch <- prometheus.MustNewConstHistogram(col.desc, count, sum, nil, info.Address, info.Symbol, info.Name)
 			return
 		} else if !eventsLeft {
 			wErr := errors.Wrapf(err, "failed to read approval event for contract=[%s]", info.Address)
