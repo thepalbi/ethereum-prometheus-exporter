@@ -2,6 +2,7 @@ package eth
 
 import (
 	"math/big"
+	"sync"
 
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/common/hexutil"
@@ -47,8 +48,11 @@ func (collector *EthGetBalance) Describe(ch chan<- *prometheus.Desc) {
 }
 
 func (collector *EthGetBalance) Collect(ch chan<- prometheus.Metric) {
+	wg := sync.WaitGroup{}
 	for _, add := range collector.addresses {
+		wg.Add(1)
 		go func(add WalletAddress) {
+			defer wg.Done()
 			var result hexutil.Big
 			if err := collector.rpc.Call(&result, "eth_getBalance", add.Address, "latest"); err != nil {
 				wErr := errors.Wrap(err, "failed to get Balance")
@@ -59,4 +63,5 @@ func (collector *EthGetBalance) Collect(ch chan<- prometheus.Metric) {
 			ch <- prometheus.MustNewConstMetric(collector.desc, prometheus.GaugeValue, balance, add.Name)
 		}(add)
 	}
+	wg.Wait()
 }
